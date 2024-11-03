@@ -1,0 +1,104 @@
+#event {
+    margin: 3.5rem 0 4rem 0;
+}
+
+.eventTitle {
+    display: flex;
+    gap: 1rem;
+    align-items: baseline;
+    font-weight: bold;
+}
+
+.eventHeading {
+    font-size: 44px;
+}
+
+.eventTimeLocation {
+    font-size: 22px;
+}
+
+.eventContainer {
+    display: flex;
+    gap: 2rem;
+    margin: 2rem 0 3rem 0;
+}
+
+.eventImage {
+    border-radius: 20px;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.about {
+    font-size: 24px;
+    font-weight: bold;
+    letter-spacing: -1.32px;
+}
+
+.eventDetails {
+    font-size: 14px;
+    padding: 1rem 0.1rem 2rem 0.1rem;
+    color: #393939;
+}
+
+.ticketInfo {
+    display: flex;
+    gap: 1rem;
+    font-size: 24px;
+    font-weight: bold;
+    letter-spacing: -1.32px;
+}
+
+.price {
+    color: #ff48ab;
+}
+
+.ticketsForm {
+    margin-top: 1rem;
+}
+
+.ticketsForm input {
+    height: 33px;
+    width: 83px;
+    text-align: center;
+    outline: none;
+    color: #393939;
+    border-radius: 20px;
+    border: 1px solid #000;
+    margin-right: 1.07rem;
+    background-color: white;
+}
+
+/* Remove number arrows */
+.ticketsForm input::-webkit-outer-spin-button,
+.ticketsForm input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+.formQuantity {
+    display: flex;
+}
+
+.buttonAdd {
+    height: 33px;
+    padding: 0.4rem 2rem;
+    border-radius: 20px;
+    cursor: pointer;
+    background-color: #000;
+    color: #fff;
+    border: 2px solid #000;
+    transition: all 0.2s ease;
+}
+
+.buttonAdd:hover {
+    border: 2px solid #FF48AB;
+}
+
+.relatedActs {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+    margin: 2rem 0 8rem 0;
+}

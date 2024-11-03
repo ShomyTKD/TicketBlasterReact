@@ -1,0 +1,49 @@
+.hero {
+    background: url('/assets/hero-img.jpg') no-repeat center center;
+    background-size: cover;
+    height: 464px;
+    border-radius: 30px;
+    width: 100%;
+    margin: 3.5rem 0;
+    position: relative;
+}
+
+.heroContent {
+    display: flex;
+    justify-content: space-between;
+}
+
+.heroInfo {
+    position: absolute;
+    left: 3rem;
+    bottom: 3rem;
+}
+
+.heroTitle {
+    font-size: 40px;
+    font-weight: bold;
+    color: white;
+}
+
+.heroTime {
+    font-size: 28px;
+    opacity: 0.7;
+    color: white;
+}
+
+.heroButton {
+    position: absolute;
+    bottom: 3rem;
+    right: 3rem;
+    border-radius: 20px;
+    height: 43px;
+    background-color: white;
+    padding: 0.6rem 2.5rem;
+    font-weight: 900;
+    font-size: 19px;
+    letter-spacing: -1.04px;
+}
+
+.heroLink {
+    color: black;
+}

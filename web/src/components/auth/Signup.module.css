@@ -1,0 +1,68 @@
+.signupHeading {
+    margin: 3.5rem 0;
+    font-weight: bold;
+    font-size: 2.75rem;
+}
+
+.signupFormContainer {
+    width: 22.3rem;
+    margin-bottom: 15rem;
+    position: relative;
+}
+
+.formLabelInput {
+    display: block;
+    margin: 1.25rem 0 0.75rem 0;
+    font-size: 1.125rem;
+}
+
+.formLabel {
+    color: #393939;
+    font-weight: bold;
+}
+
+.formInput {
+    width: 22.3rem;
+    height: 2.625rem;
+    padding: 0 1rem;
+    outline: none;
+    border: 1px solid #000;
+    background-color: #fff;
+    border-radius: 21px;
+    color: #393939;
+}
+
+.signupButton {
+    margin: 2.3rem 0;
+    width: 100%;
+    height: 2.625rem;
+    border: 0;
+    border-radius: 20px;
+    background-color: #FF48AB;
+    color: #fff;
+    font-size: 1rem;
+    font-weight: bold;
+    letter-spacing: -0.88px;
+    cursor: pointer;
+}
+
+.alreadyHaveButton {
+    display: block;
+    padding: 0.5rem 0;
+    text-align: center;
+    width: 100%;
+    height: 2.625rem;
+    font-size: 1rem;
+    font-weight: bold;
+    color: black;
+    border: 2px solid #FF48AB;
+    border-radius: 20px;
+    letter-spacing: -0.88px;
+}
+
+.invalidFormat {
+    color: red;
+    font-size: 0.8rem;
+    position: absolute;
+    right: 0.5rem;
+}

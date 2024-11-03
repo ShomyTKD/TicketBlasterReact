@@ -1,0 +1,106 @@
+.header {
+    background-color: black;
+    color: white;
+    height: 70px;
+}
+
+.headerContainer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.headerLeft {
+    display: flex;
+    align-items: center;
+    margin-top: 1rem;
+}
+
+.headerLeft ul {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    font-size: 14px;
+}
+
+.headerRight {
+    display: flex;
+    align-items: center;
+    margin-top: 0.9rem;
+}
+
+.headerRight ul {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.logo {
+    margin-right: 1.5rem;
+}
+
+.searchBar {
+    width: 295px;
+    border-radius: 20px;
+    height: 42px;
+    background-color: white;
+    border: none;
+}
+
+.headerRight input {
+    color: black;
+    padding-left: 1rem;
+}
+
+.headerRight input::placeholder {
+    color: black;
+}
+
+.loginButton {
+    border-radius: 20px;
+    height: 42px;
+    background-color: #ff48ab;
+    color: black;
+    padding: 0.6rem 1.8rem;
+    font-size: 1rem;
+    font-weight: 900;
+    letter-spacing: -0.88px;
+}
+
+.createAccountButton {
+    border-radius: 20px;
+    height: 42px;
+    border: 1px solid #EE47A0;
+    padding: 0.6rem 1.8rem;
+    font-size: 1rem;
+    font-weight: 900;
+    letter-spacing: -0.88px;
+    color: white;
+}
+
+.headerIconButtons {
+    display: flex;
+    margin-right: 0.5rem;
+}
+
+.icons {
+    color: #FF48AB;
+    font-size: 1.4rem;
+    padding: 0 0.5rem;
+}
+
+.navLink {
+    text-decoration: none;
+    color: #ddd6cb;
+    font-weight: bold;
+    padding: 0.5rem 1rem;
+    border-radius: 0.5rem;
+}
+
+.navLink:hover {
+    color: #ff48ab;
+}
+
+.active {
+    color: #ff48ab;
+}

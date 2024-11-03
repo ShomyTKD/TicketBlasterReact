@@ -1,0 +1,31 @@
+.comedyHeading {
+    margin: 3.5rem 0 2rem 0;
+}
+
+.comedy {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    column-gap: 3rem;
+    margin-bottom: 4rem;
+}
+
+.categories {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0 auto 7rem;
+    max-width: 1200px;
+    gap: 3rem;
+}
+
+.categoriesButton {
+    color: black;
+    border: 1px solid black;
+    border-radius: 20px;
+    padding: 0.6rem 0;
+    width: 100%;
+    text-align: center;
+    font-size: 19px;
+    font-weight: 900;
+}
