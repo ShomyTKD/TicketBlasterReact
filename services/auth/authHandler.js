@@ -24,6 +24,12 @@ const signUp = async (req, res) => {
             { expiresIn: process.env.JWT_EXPIRES }
         );
 
+        res.cookie('jwt', token, {
+            expires: new Date(Date.now() + process.env.JWT_COOKIE_EXPIRES * 24 * 60 * 60 * 1000),
+            secure: false,
+            httpOnly: true
+        })
+
         res.status(201).json({ result: { name: newUser.name, email: newUser.email, id: newUser._id }, token });
     } catch (error) {
         console.error(error);
@@ -53,11 +59,11 @@ const login = async (req, res) => {
             { expiresIn: process.env.JWT_EXPIRES }
         );
         res.cookie('jwt', token, {
-            expires: new Date(Date.now() + process.env.JWT_COOKIE_EXPIRES * 24 * 60 * 60 * 1000),
-            sameSite: 'None',
-            secure: true,
-            httpOnly: false,
-            path: '/'
+            expires: new Date(
+                Date.now() + process.env.JWT_COOKIE_EXPIRES * 24 * 60 * 60 * 1000
+            ),
+            secure: false,
+            httpOnly: true,
         });
         res.status(200).json({ result: { name: existingUser.name, email: existingUser.email, id: existingUser._id }, token });
     } catch (error) {
@@ -67,6 +73,7 @@ const login = async (req, res) => {
 }
 
 const logout = async (req, res) => {
+    res.clearCookie('jwt');
     res.status(200).json({ message: 'Logged out successfully' });
 }
 
