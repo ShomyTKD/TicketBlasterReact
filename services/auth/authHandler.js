@@ -1,0 +1,78 @@
+const User = require('../../packages/user/userSchema');
+const jwt = require('jsonwebtoken');
+const bcrypt = require('bcryptjs');
+
+const signUp = async (req, res) => {
+    const { name, email, password, confirmPassword } = req.body;
+
+    if (!name || !email || !password || !confirmPassword) {
+        return res.status(400).json({ message: 'All fields are required' });
+    }
+
+    try {
+        const existingUser = await User.findOne({ email });
+        if (existingUser) {
+            return res.status(400).json({ message: 'User already exists' });
+        }
+        if (password !== confirmPassword) {
+            return res.status(400).json({ message: 'Passwords do not match' });
+        }
+        const newUser = await User.create({ name, email, password });
+        const token = jwt.sign(
+            { id: newUser._id },
+            process.env.JWT_SECRET,
+            { expiresIn: process.env.JWT_EXPIRES }
+        );
+
+        res.status(201).json({ result: { name: newUser.name, email: newUser.email, id: newUser._id }, token });
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ message: 'Something went wrong' });
+    }
+}
+
+const login = async (req, res) => {
+    const { email, password } = req.body;
+
+    if (!email || !password) {
+        return res.status(400).json({ message: 'All fields are required' });
+    }
+
+    try {
+        const existingUser = await User.findOne({ email });
+        if (!existingUser) {
+            return res.status(404).json({ message: 'Invalid credentials' });
+        }
+        const isPasswordCorrect = await bcrypt.compare(password, existingUser.password);
+        if (!isPasswordCorrect) {
+            return res.status(400).json({ message: 'Invalid credentials' });
+        }
+        const token = jwt.sign(
+            { id: existingUser._id },
+            process.env.JWT_SECRET,
+            { expiresIn: process.env.JWT_EXPIRES }
+        );
+        res.cookie('jwt', token, {
+            expires: new Date(Date.now() + process.env.JWT_COOKIE_EXPIRES * 24 * 60 * 60 * 1000),
+            sameSite: 'None',
+            secure: true,
+            httpOnly: false,
+            path: '/'
+        });
+        res.status(200).json({ result: { name: existingUser.name, email: existingUser.email, id: existingUser._id }, token });
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ message: 'Something went wrong' });
+    }
+}
+
+const logout = async (req, res) => {
+    res.status(200).json({ message: 'Logged out successfully' });
+}
+
+
+module.exports = {
+    signUp,
+    login,
+    logout
+}
