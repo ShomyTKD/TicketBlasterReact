@@ -1,10 +1,9 @@
 import { Link, useNavigate } from 'react-router-dom';
 import classes from './Login.module.css';
-
-import { useState } from 'react';
+import { UserContext } from '../../Context/UserContext';
+import { useState, useContext } from 'react';
 
 import axios from 'axios';
-
 
 export default function Login() {
     const [email, setEmail] = useState('');
@@ -21,17 +20,21 @@ export default function Login() {
 
     const validateEmail = validator(email);
 
+    const { loginSuccess } = useContext(UserContext);
+
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
             axios.defaults.withCredentials = true
-            const response = await axios.post('http://localhost:3001/api/v1/auth/login', {
+            const res = await axios.post('http://localhost:9001/api/v1/auth/login', {
                 email,
                 password
             })
-            console.log(response)
-            if (response.status === 200) {
+            const token = res.data.token;
+            localStorage.setItem('jwt', token);
+            if (res.status === 200) {
                 console.log("login successful")
+                loginSuccess();
                 navigate('/');
             }
         } catch (error) {

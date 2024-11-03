@@ -1,5 +1,6 @@
-import { useState } from "react";
+import { useContext } from "react";
 import { Link, NavLink } from 'react-router-dom';
+import { UserContext } from '../../Context/UserContext';
 
 import classes from './Header.module.css'
 
@@ -7,7 +8,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCartShopping, faUser } from '@fortawesome/free-solid-svg-icons'
 
 export default function Header() {
-    const [isLoggedIn, setIsLoggedIn] = useState(false);
+    const { isLoggedIn } = useContext(UserContext);
 
     return (
         <div className={classes.header}>
@@ -30,7 +31,7 @@ export default function Header() {
                             {isLoggedIn ? (
                                 <div className={classes.headerIconButtons}>
                                     <Link to='/'><FontAwesomeIcon icon={faCartShopping} className={classes.icons} /></Link>
-                                    <Link to='/'><FontAwesomeIcon icon={faUser} className={classes.icons} /></Link>
+                                    <Link to='/user'><FontAwesomeIcon icon={faUser} className={classes.icons} /></Link>
                                 </div>
                             ) : (
                                 <>
