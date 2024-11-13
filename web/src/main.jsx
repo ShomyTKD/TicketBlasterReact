@@ -12,7 +12,8 @@ import ForgotPassword from './components/auth/ForgotPassword'
 import ResetPassword from './components/auth/ResetPassword'
 import Signup from './components/auth/Signup'
 import TicketsHistory from './components/user/TicketsHistory'
-import UserProfile from './components/user/UserProfile'
+import UserDetails from "./components/user/UserDetails";
+import UserPage from "./components/user/UserPage";
 
 const router = createBrowserRouter([
     {
@@ -52,16 +53,18 @@ const router = createBrowserRouter([
                 element: <Signup />
             },
             {
-                path: "/user/",
-                element: <UserProfile />
-            },
-            {
-                path: "/user/tickets-history",
-                element: <TicketsHistory />
-            },
-            {
-                path: "/user/user-details",
-                element: <UserProfile />
+                path: "/user",
+                element: <UserPage />,
+                children: [
+                    {
+                        path: "tickets-history",
+                        element: <TicketsHistory />
+                    },
+                    {
+                        path: "user-details",
+                        element: <UserDetails />
+                    }
+                ]
             },
 
         ],

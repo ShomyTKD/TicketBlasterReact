@@ -1,18 +1,18 @@
 import { useState, useEffect } from 'react';
-import { NavLink, useLocation, useNavigate } from 'react-router-dom';
-import classes from './UserProfile.module.css';
+import { NavLink, Outlet, useLocation, useNavigate } from 'react-router-dom';
+import classes from './UserPage.module.css';
 
-import TicketsHistory from './TicketsHistory';
-import UserDetails from './UserDetails';
-
-export default function UserProfile() {
+export default function UserPage() {
     const location = useLocation();
     const navigate = useNavigate();
-    const pathname = location.pathname;
 
     const [title, setTitle] = useState('');
 
-    const getTitle = () => {
+    useEffect(() => {
+        navigate('/user/user-details');
+    }, [navigate]);
+
+    useEffect(() => {
         const path = location.pathname.split('/')[2];
         if (path === 'events' || path === 'create-event') {
             setTitle('Events');
@@ -23,15 +23,7 @@ export default function UserProfile() {
         } else if (path === 'user-details') {
             setTitle('User Details')
         };
-    };
-
-    useEffect(() => {
-        navigate('/user/user-details');
-    }, []);
-
-    useEffect(() => {
-        getTitle()
-    }, [location])
+    }, [location]);
 
     return (
         <div className="wrapper">
@@ -57,12 +49,7 @@ export default function UserProfile() {
                 </ul>
             </div>
 
-            {pathname == '/user/tickets-history' && (
-                <TicketsHistory />
-            )}
-            {pathname == '/user/user-details' && (
-                <UserDetails />
-            )}
+            <Outlet />
         </div>
     )
 }
