@@ -14,7 +14,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin: 0 auto 7rem;
+    margin: 0 auto 3.5rem;
     max-width: 1200px;
     gap: 3rem;
 }
