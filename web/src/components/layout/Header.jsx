@@ -30,8 +30,8 @@ export default function Header() {
                             <input type="search" name="keyword" id="keyword" placeholder="Search" className={classes.searchBar}></input>
                             {isLoggedIn ? (
                                 <div className={classes.headerIconButtons}>
-                                    <Link to='/'><FontAwesomeIcon icon={faCartShopping} className={classes.icons} /></Link>
-                                    <Link to='/user'><FontAwesomeIcon icon={faUser} className={classes.icons} /></Link>
+                                    <Link to='/cart'><FontAwesomeIcon icon={faCartShopping} className={classes.icons} /></Link>
+                                    <Link to='/user/user-details'><FontAwesomeIcon icon={faUser} className={classes.icons} /></Link>
                                 </div>
                             ) : (
                                 <>
