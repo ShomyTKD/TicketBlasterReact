@@ -1,13 +1,83 @@
-import classes from './UserDetails.module.css'
+import { useContext, useState, useEffect } from 'react';
+import { UserContext } from '../../Context/UserContext';
 
-import { useState } from 'react';
+import axios from 'axios';
+
+import classes from './UserDetails.module.css'
 
 export default function UserDetails() {
     const [passwordForm, setPasswordForm] = useState(false);
+    const [newUserName, setNewUserName] = useState('');
+    const [newUserEmail, setNewUserEmail] = useState('');
+    const [newUserPassword, setNewUserPassword] = useState('');
+    const [newUserPasswordConfirm, setNewUserPasswordConfirm] = useState('');
+
+    const { userID, userName, userEmail } = useContext(UserContext);
 
     const togglePasswordForm = () => {
         setPasswordForm(!passwordForm);
     };
+
+    const updateName = (e) => {
+        setNewUserName(e.target.value);
+    };
+
+    const updateEmail = (e) => {
+        setNewUserEmail(e.target.value);
+    };
+
+    const handleUserDetailsSubmit = async (e) => {
+        e.preventDefault();
+        try {
+            if (!userID) {
+                throw new Error('User ID is null or undefined');
+            }
+            const formData = new FormData();
+            if (newUserName) {
+                formData.append('username', newUserName);
+            }
+            if (newUserEmail) {
+                formData.append('email', newUserEmail);
+            }
+            if (formData.has('username') || formData.has('email')) {
+                const res = await axios.patch(`http://localhost:9002/api/v1/users/update-user/${userID}`, formData);
+                if (res.status === 200) {
+                    console.log('User details updated successfully');
+                } else {
+                    throw new Error(`Failed to update user with status ${res.status}`);
+                }
+            }
+        } catch (error) {
+            console.error(error);
+        }
+    };
+
+    const handlePasswordSubmit = async (e) => {
+        e.preventDefault();
+        try {
+            if (newUserPassword === newUserPasswordConfirm) {
+                const res = await axios.patch(`http://localhost:9002/api/v1/users/update-user/change-password/${userID}`, {
+                    password: newUserPassword,
+                });
+                console.log(res)
+                if (res.status === 200) {
+                    console.log("Password updated successfully");
+                    setNewUserPassword('');
+                    setNewUserPasswordConfirm('');
+                } else {
+                    throw new Error(`Failed to update password with status ${res.status}`);
+                }
+            };
+
+        } catch (error) {
+            console.error(error);
+        }
+    };
+
+    useEffect(() => {
+        setNewUserName(userName);
+        setNewUserEmail(userEmail);
+    }, [userEmail, userName]);
 
     return (
         <div className="wrapper">
@@ -18,18 +88,18 @@ export default function UserDetails() {
                             <img src="/assets/avatar.jpg" className={classes.avatar} />
                             <div className={classes.usernameField}>
                                 <label htmlFor="username" className={classes.formLabelInput + ' ' + classes.formLabel}>Full Name</label>
-                                <input type="text" name="username" id="username" className={classes.formInput} />
+                                <input type="text" name="username" id="username" value={newUserName} onChange={updateName} className={classes.formInput} />
                             </div>
                         </div>
                         <div className={classes.userFormBottom}>
                             <button className={classes.avatarButton}>Upload Avatar</button>
                             <div className={classes.emailField}>
                                 <label htmlFor="email" className={classes.formLabelInput + ' ' + classes.formLabel}>Email</label>
-                                <input type="email" name="email" id="email" className={classes.formInput} />
+                                <input type="email" name="email" id="email" value={newUserEmail} onChange={updateEmail} className={classes.formInput} />
                             </div>
                         </div>
                     </div>
-                    <button className={classes.submitButton}>Submit</button>
+                    <button onClick={handleUserDetailsSubmit} className={classes.submitButton}>Submit</button>
                 </form>
 
                 <div className={classes.passwordChange}>
@@ -41,14 +111,14 @@ export default function UserDetails() {
                         <div className={classes.passwordFormFlex}>
                             <div className={classes.passwordFormLeft}>
                                 <label htmlFor="password" className={classes.formLabelInput + ' ' + classes.formLabel}>Password</label>
-                                <input type="password" name="password" id="password" className={classes.formInputPassword} />
+                                <input type="password" name="password" id="password" value={newUserPassword} onChange={(e) => setNewUserPassword(e.target.value)} className={classes.formInputPassword} />
                             </div>
                             <div className={classes.passwordFormRight}>
                                 <label htmlFor="confirmPassword" className={classes.formLabelInput + ' ' + classes.formLabel}>Confirm Password</label>
-                                <input type="password" name="confirmPassword" id="confirmPassword" className={classes.formInputPassword} />
+                                <input type="password" name="confirmPassword" id="confirmPassword" value={newUserPasswordConfirm} onChange={(e) => setNewUserPasswordConfirm(e.target.value)} className={classes.formInputPassword} />
                             </div>
                         </div>
-                        <button className={classes.submitButton}>Submit</button>
+                        <button onClick={handlePasswordSubmit} className={classes.submitButton}>Submit</button>
                     </form>)}
                 </div>
             </div>

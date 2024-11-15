@@ -3,9 +3,9 @@ const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
 
 const signUp = async (req, res) => {
-    const { name, email, password, confirmPassword } = req.body;
+    const { username, email, password, confirmPassword } = req.body;
 
-    if (!name || !email || !password || !confirmPassword) {
+    if (!username || !email || !password || !confirmPassword) {
         return res.status(400).json({ message: 'All fields are required' });
     }
 
@@ -17,7 +17,7 @@ const signUp = async (req, res) => {
         if (password !== confirmPassword) {
             return res.status(400).json({ message: 'Passwords do not match' });
         }
-        const newUser = await User.create({ name, email, password });
+        const newUser = await User.create({ username, email, password });
         const token = jwt.sign(
             { id: newUser._id },
             process.env.JWT_SECRET,
@@ -30,7 +30,7 @@ const signUp = async (req, res) => {
             httpOnly: true
         })
 
-        res.status(201).json({ result: { name: newUser.name, email: newUser.email, id: newUser._id }, token });
+        res.status(201).json({ result: { username: newUser.username, email: newUser.email, id: newUser._id }, token });
     } catch (error) {
         console.error(error);
         res.status(500).json({ message: 'Something went wrong' });
@@ -65,7 +65,7 @@ const login = async (req, res) => {
             secure: false,
             httpOnly: true,
         });
-        res.status(200).json({ result: { name: existingUser.name, email: existingUser.email, id: existingUser._id }, token });
+        res.status(200).json({ result: { username: existingUser.username, email: existingUser.email, id: existingUser._id }, token });
     } catch (error) {
         console.error(error);
         res.status(500).json({ message: 'Something went wrong' });

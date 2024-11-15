@@ -3,6 +3,9 @@ const userHandler = require('./userHandler');
 const DB = require('../../packages/database/index');
 const cors = require('cors');
 
+const multer = require('multer');
+const upload = multer();
+
 const app = express();
 
 DB.init();
@@ -18,6 +21,9 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.static('public'));
 
 app.get('/api/v1/users/get-user/:id', userHandler.getUser);
+app.patch('/api/v1/users/update-user/:id', upload.none(), userHandler.updateUser);
+app.patch('/api/v1/users/update-user/change-password/:id', userHandler.updateUserPassword);
+
 
 app.listen(process.env.USERS_PORT, (err) => {
     if (err) return console.log(err);

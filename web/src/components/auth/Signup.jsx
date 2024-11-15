@@ -1,16 +1,18 @@
-import { Link } from 'react-router-dom';
-import classes from './Signup.module.css';
-
 import { useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 
 import axios from 'axios';
 
+import classes from './Signup.module.css';
+
 export default function Signup() {
-    const [name, setName] = useState('');
+    const [username, setUserName] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
     const [userExists, setUserExists] = useState(false);
+
+    const navigate = useNavigate();
 
     const validator = (email) => {
         const emailLower = email.toLowerCase();
@@ -18,28 +20,33 @@ export default function Signup() {
         return emailRegex.test(emailLower);
     };
 
-    const validateName = name.trim().split(' ').length >= 2;
+    const validateName = username.trim().split(' ').length >= 2;
     const validateEmail = validator(email);
     const validatePassword = password.length >= 8;
 
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            const response = await axios.post('http://localhost:9001/api/v1/auth/signup', {
-                name,
+            const res = await axios.post('http://localhost:9001/api/v1/auth/signup', {
+                username,
                 email,
-                password
+                password,
+                confirmPassword
             });
 
-            if (response.status === 201) {
-                setName('');
+            if (res.status === 201) {
+                setUserName('');
                 setEmail('');
                 setPassword('');
                 setConfirmPassword('')
             };
+
+            navigate('/login');
         } catch (error) {
             if (error.response.data.message === 'User already exists') {
                 setUserExists(true);
+            } else {
+                console.log(error.response.data.message);
             }
         }
     }
@@ -63,11 +70,11 @@ export default function Signup() {
                             name="username"
                             id="username"
                             className={classes.formInput}
-                            value={name}
-                            onChange={(e) => setName(e.target.value)}
+                            value={username}
+                            onChange={(e) => setUserName(e.target.value)}
                             required
                         />
-                        {name !== '' && !validateName && (
+                        {username !== '' && !validateName && (
                             <p className={classes.invalidFormat}>Firstname and Lastname are required</p>
                         )}
                         <label

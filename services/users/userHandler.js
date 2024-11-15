@@ -1,4 +1,5 @@
 const User = require('../../packages/user/userSchema');
+const bcrypt = require('bcryptjs');
 
 const getUsers = async (req, res) => {
     try {
@@ -34,8 +35,20 @@ const updateUser = async (req, res) => {
     }
 }
 
+const updateUserPassword = async (req, res) => {
+    try {
+        const { password } = req.body;
+        const hashedPassword = await bcrypt.hash(password, 10);
+        const user = await User.findByIdAndUpdate(req.params.id, { password: hashedPassword }, { new: true });
+        res.send(user);
+    } catch (error) {
+        res.status(400).send(error);
+    }
+}
+
 module.exports = {
     getUsers,
     getUser,
-    updateUser
+    updateUser,
+    updateUserPassword
 }

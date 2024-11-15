@@ -5,6 +5,9 @@ import { UserContext } from './UserContext';
 
 export const UserProvider = ({ children }) => {
     const [isLoggedIn, setIsLoggedIn] = useState(false);
+    const [userID, setUserID] = useState('');
+    const [userName, setUserName] = useState('');
+    const [userEmail, setUserEmail] = useState('');
 
     const fetchUserData = async () => {
         try {
@@ -13,9 +16,11 @@ export const UserProvider = ({ children }) => {
             if (token) {
                 const decodedToken = jwtDecode(token);
                 /* console.log(decodedToken.id) */
+                setUserID(decodedToken.id);
                 const res = await axios.get(`http://localhost:9002/api/v1/users/get-user/${decodedToken.id}`);
                 const singleUser = res.data.data.singleUser;
-                console.log(singleUser);
+                setUserName(singleUser.username);
+                setUserEmail(singleUser.email);
             }
         } catch (error) {
             console.log(error);
@@ -41,7 +46,7 @@ export const UserProvider = ({ children }) => {
     }, []);
 
     return (
-        <UserContext.Provider value={{ isLoggedIn, loginSuccess, logOut }}>
+        <UserContext.Provider value={{ isLoggedIn, loginSuccess, logOut, userID, userName, userEmail }}>
             {children}
         </UserContext.Provider>
     )
