@@ -11,7 +11,9 @@ const AppLayout = () => {
             <UserProvider>
                 <div id='container'>
                     <Header />
-                    <Outlet />
+                    <div id="content">
+                        <Outlet />
+                    </div>
                     <Footer />
                 </div>
             </UserProvider>
