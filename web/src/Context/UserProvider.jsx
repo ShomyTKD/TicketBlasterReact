@@ -8,15 +8,15 @@ export const UserProvider = ({ children }) => {
     const [userID, setUserID] = useState('');
     const [userName, setUserName] = useState('');
     const [userEmail, setUserEmail] = useState('');
+    const [userRole, setUserRole] = useState('');
 
     const fetchUserData = async () => {
         try {
             const token = localStorage.getItem('jwt');
-            /* console.log(token) */
             if (token) {
                 const decodedToken = jwtDecode(token);
-                /* console.log(decodedToken.id) */
                 setUserID(decodedToken.id);
+                setUserRole(decodedToken.role);
                 const res = await axios.get(`http://localhost:9002/api/v1/users/get-user/${decodedToken.id}`);
                 const singleUser = res.data.data.singleUser;
                 setUserName(singleUser.username);
@@ -46,7 +46,7 @@ export const UserProvider = ({ children }) => {
     }, []);
 
     return (
-        <UserContext.Provider value={{ isLoggedIn, loginSuccess, logout, userID, userName, userEmail }}>
+        <UserContext.Provider value={{ isLoggedIn, loginSuccess, logout, userID, userName, userEmail, userRole }}>
             {children}
         </UserContext.Provider>
     )

@@ -7,7 +7,7 @@ import axios from 'axios';
 import classes from './UserPage.module.css';
 
 export default function UserPage() {
-    const { logout } = useContext(UserContext);
+    const { logout, userRole } = useContext(UserContext);
 
     const location = useLocation();
     const navigate = useNavigate();
@@ -27,7 +27,7 @@ export default function UserPage() {
 
     useEffect(() => {
         navigate('/user/user-details');
-    }, [navigate]);
+    }, [navigate, userRole]);
 
     useEffect(() => {
         const path = location.pathname.split('/')[2];
@@ -48,12 +48,16 @@ export default function UserPage() {
 
                 <h1 className={classes.heading}>{title}</h1>
                 <ul className={classes.links}>
-                    <li><NavLink to="/user/events" className={({ isActive }) => classes.navLink + ' ' + (isActive ? classes.active : '')}>
-                        Events
-                    </NavLink></li>
-                    <li><NavLink to="/user/users" className={({ isActive }) => classes.navLink + ' ' + (isActive ? classes.active : '')}>
-                        Users
-                    </NavLink></li>
+                    {userRole === 'admin' && (
+                        <li><NavLink to="/user/events" className={({ isActive }) => classes.navLink + ' ' + (isActive ? classes.active : '')}>
+                            Events
+                        </NavLink></li>
+                    )}
+                    {userRole === 'admin' && (
+                        <li><NavLink to="/user/users" className={({ isActive }) => classes.navLink + ' ' + (isActive ? classes.active : '')}>
+                            Users
+                        </NavLink></li>
+                    )}
                     <li><NavLink to="/user/tickets-history" className={({ isActive }) => classes.navLink + ' ' + (isActive ? classes.active : '')}>
                         Tickets History
                     </NavLink></li>
