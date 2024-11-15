@@ -19,6 +19,7 @@ app.use(cookieParser());
 
 app.post('/api/v1/auth/signup', auth.signUp);
 app.post('/api/v1/auth/login', auth.login);
+app.get('/api/v1/auth/logout', auth.logout);
 
 app.listen(process.env.AUTH_PORT, (err) => {
     if (err) return console.log(err);

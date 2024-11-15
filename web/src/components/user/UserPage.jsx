@@ -1,12 +1,29 @@
-import { useState, useEffect } from 'react';
-import { NavLink, Outlet, useLocation, useNavigate } from 'react-router-dom';
+import { useContext, useState, useEffect } from 'react';
+import { Link, NavLink, Outlet, useLocation, useNavigate } from 'react-router-dom';
+import { UserContext } from '../../Context/UserContext';
+
+import axios from 'axios';
+
 import classes from './UserPage.module.css';
 
 export default function UserPage() {
+    const { logout } = useContext(UserContext);
+
     const location = useLocation();
     const navigate = useNavigate();
 
     const [title, setTitle] = useState('');
+
+    const handleLogout = async () => {
+        try {
+            await axios.get('http://localhost:9001/api/v1/auth/logout');
+            localStorage.removeItem('jwt');
+            logout()
+            navigate('/');
+        } catch (err) {
+            console.log(err);
+        };
+    };
 
     useEffect(() => {
         navigate('/user/user-details');
@@ -43,9 +60,9 @@ export default function UserPage() {
                     <li><NavLink to="/user/user-details" className={({ isActive }) => classes.navLink + ' ' + (isActive ? classes.active : '')}>
                         User Details
                     </NavLink></li>
-                    {/* <li><NavLink href="/" onClick={handleLogout} className={({ isActive }) => classes.navLink + ' ' + (isActive ? classes.active : '')}>
-                    Log Out
-                    </NavLink></li> */}
+                    <li><Link onClick={handleLogout} className={classes.navLink}>
+                        Log Out
+                    </Link></li>
                 </ul>
             </div>
 

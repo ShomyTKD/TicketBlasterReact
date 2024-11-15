@@ -32,7 +32,7 @@ export const UserProvider = ({ children }) => {
         await fetchUserData();
     };
 
-    const logOut = () => {
+    const logout = () => {
         localStorage.removeItem('jwt');
         setIsLoggedIn(false);
     };
@@ -46,7 +46,7 @@ export const UserProvider = ({ children }) => {
     }, []);
 
     return (
-        <UserContext.Provider value={{ isLoggedIn, loginSuccess, logOut, userID, userName, userEmail }}>
+        <UserContext.Provider value={{ isLoggedIn, loginSuccess, logout, userID, userName, userEmail }}>
             {children}
         </UserContext.Provider>
     )
