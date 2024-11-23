@@ -16,13 +16,10 @@ export default function TicketsHistory() {
     ]
 
     return (
-        <div className="wrapper">
-            <div className={classes.history}>
-                {historyCard.map((concert) => (
-                    <EventCard key={concert.id} name={concert.name} date={concert.date} location={concert.location} description={concert.description} buttonLabel={'Print'} />
-                ))}
-            </div>
-
+        <div className={classes.history}>
+            {historyCard.map((concert) => (
+                <EventCard key={concert.id} name={concert.name} date={concert.date} location={concert.location} description={concert.description} buttonLabel={'Print'} />
+            ))}
         </div>
     )
 }
