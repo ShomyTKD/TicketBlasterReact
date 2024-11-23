@@ -25,9 +25,9 @@ export default function UserPage() {
         };
     };
 
-    useEffect(() => {
+    /* useEffect(() => {
         navigate('/user/user-details');
-    }, [navigate, userRole]);
+    }, [userRole]); */
 
     useEffect(() => {
         const path = location.pathname.split('/')[2];
@@ -45,8 +45,12 @@ export default function UserPage() {
     return (
         <div className="wrapper">
             <div className={classes.navigation}>
-
-                <h1 className={classes.heading}>{title}</h1>
+                <div className={classes.title}>
+                    <h1>{title}</h1>
+                    {(userRole === 'admin' && title === 'Events') && (
+                        <Link to={'/user/create-event'} className={classes.createEventButton}>Create Event</Link>
+                    )}
+                </div>
                 <ul className={classes.links}>
                     {userRole === 'admin' && (
                         <li><NavLink to="/user/events" className={({ isActive }) => classes.navLink + ' ' + (isActive ? classes.active : '')}>
