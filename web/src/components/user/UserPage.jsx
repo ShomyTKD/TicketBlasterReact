@@ -25,14 +25,12 @@ export default function UserPage() {
         };
     };
 
-    /* useEffect(() => {
-        navigate('/user/user-details');
-    }, [userRole]); */
-
     useEffect(() => {
         const path = location.pathname.split('/')[2];
-        if (path === 'events' || path === 'create-event') {
+        if (path === 'events') {
             setTitle('Events');
+        } else if (path === 'create-event') {
+            setTitle('Create Event');
         } else if (path === 'users') {
             setTitle('Users')
         } else if (path === 'tickets-history') {
