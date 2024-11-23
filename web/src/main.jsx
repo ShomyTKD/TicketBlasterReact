@@ -1,4 +1,4 @@
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { createBrowserRouter, RouterProvider, Navigate } from "react-router-dom";
 import { createRoot } from 'react-dom/client'
 
 import AppLayout from "./components/App";
@@ -14,6 +14,9 @@ import Signup from './components/auth/Signup'
 import TicketsHistory from './components/user/TicketsHistory'
 import UserDetails from "./components/user/UserDetails";
 import UserPage from "./components/user/UserPage";
+import EventsManager from "./components/admin/EventsManager";
+import CreateEvent from "./components/admin/CreateEvent";
+import UsersManager from "./components/admin/UsersManager";
 
 const router = createBrowserRouter([
     {
@@ -57,13 +60,29 @@ const router = createBrowserRouter([
                 element: <UserPage />,
                 children: [
                     {
+                        index: true,
+                        element: <Navigate to="user-details" replace />
+                    },
+                    {
                         path: "tickets-history",
                         element: <TicketsHistory />
                     },
                     {
                         path: "user-details",
                         element: <UserDetails />
-                    }
+                    },
+                    {
+                        path: "events",
+                        element: <EventsManager />
+                    },
+                    {
+                        path: "create-event",
+                        element: <CreateEvent />
+                    },
+                    {
+                        path: "users",
+                        element: <UsersManager />
+                    },
                 ]
             },
 
