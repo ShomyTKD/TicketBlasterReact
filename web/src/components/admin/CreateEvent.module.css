@@ -33,6 +33,18 @@
     gap: 2.5rem;
 }
 
+.uploadContainer input {
+    display: none;
+}
+
+.buttonUpload {
+    width: 357px;
+    height: 42px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
 .imagePreview {
     width: 357px;
     height: 211px;
@@ -45,6 +57,14 @@
     align-items: center;
     font-weight: bold;
     font-size: 1.125rem;
+}
+
+.imagePreview img {
+    width: 357px;
+    height: 211px;
+    object-fit: cover;
+    border: 1px solid #707070;
+    border-radius: 18px;
 }
 
 .relatedSelection {
@@ -87,6 +107,7 @@
     background-color: #000;
     border-radius: 20px;
     height: 42px;
+    cursor: pointer;
 }
 
 .buttonAdd {

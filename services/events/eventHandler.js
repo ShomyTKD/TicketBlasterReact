@@ -21,7 +21,12 @@ const getSingleEvent = async (req, res) => {
 
 const createEvent = async (req, res) => {
     try {
-        let newImage = '';
+        let uploadedImage = '';
+
+        if (req.file) {
+            uploadedImage = req.file.filename;
+        };
+
         const relatedEvents = req.body.relatedEvents ? JSON.parse(req.body.relatedEvents) : [];
 
         if (relatedEvents && Array.isArray(relatedEvents)) {
@@ -35,7 +40,7 @@ const createEvent = async (req, res) => {
         const event = await Event.create({
             ...req.body,
             relatedEvents,
-            image: newImage
+            image: uploadedImage
         });
         res.status(201).json(event);
     } catch (error) {
