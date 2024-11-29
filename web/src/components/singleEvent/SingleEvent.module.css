@@ -30,6 +30,12 @@
     background-repeat: no-repeat;
 }
 
+.eventRight {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
 .about {
     font-size: 24px;
     font-weight: bold;

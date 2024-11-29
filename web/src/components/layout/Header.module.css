@@ -94,7 +94,7 @@
     color: #ddd6cb;
     font-weight: bold;
     padding: 0.5rem 1rem;
-    border-radius: 0.5rem;
+    border-radius: 8px;
 }
 
 .navLink:hover {

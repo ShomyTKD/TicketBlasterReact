@@ -36,7 +36,7 @@ const router = createBrowserRouter([
                 element: <Comedy />
             },
             {
-                path: "/event",
+                path: "/event/:id",
                 element: <SingleEvent />
             },
             {
