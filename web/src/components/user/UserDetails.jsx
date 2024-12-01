@@ -11,8 +11,10 @@ export default function UserDetails() {
     const [newUserEmail, setNewUserEmail] = useState('');
     const [newUserPassword, setNewUserPassword] = useState('');
     const [newUserPasswordConfirm, setNewUserPasswordConfirm] = useState('');
+    const [newImage, setNewImage] = useState('');
+    const [previewImage, setPreviewImage] = useState(null);
 
-    const { userID, userName, userEmail } = useContext(UserContext);
+    const { userID, userName, userEmail, userDefaultImage, updateDefaultImage } = useContext(UserContext);
 
     const togglePasswordForm = () => {
         setPasswordForm(!passwordForm);
@@ -39,10 +41,19 @@ export default function UserDetails() {
             if (newUserEmail) {
                 formData.append('email', newUserEmail);
             }
-            if (formData.has('username') || formData.has('email')) {
+
+            if (newImage) {
+                formData.append('image', newImage);
+            }
+
+            if (formData.has('username') || formData.has('email') || formData.has('image')) {
                 const res = await axios.patch(`http://localhost:9002/api/v1/users/update-user/${userID}`, formData);
                 if (res.status === 200) {
                     console.log('User details updated successfully');
+                    if (formData.has('image')) {
+                        console.log(res)
+                        updateDefaultImage(res.data.image, false);
+                    }
                 } else {
                     throw new Error(`Failed to update user with status ${res.status}`);
                 }
@@ -74,6 +85,13 @@ export default function UserDetails() {
         }
     };
 
+    const handleImageChange = (e) => {
+        if (e.target.files && e.target.files[0]) {
+            setPreviewImage(URL.createObjectURL(e.target.files[0]))
+            setNewImage(e.target.files[0]);
+        }
+    };
+
     useEffect(() => {
         setNewUserName(userName);
         setNewUserEmail(userEmail);
@@ -84,14 +102,30 @@ export default function UserDetails() {
             <form className={classes.userForm}>
                 <div className={classes.userFormFlex}>
                     <div className={classes.userFormTop}>
-                        <img src="/assets/avatar.jpg" className={classes.avatar} />
+                        {previewImage ? (
+                            <img src={previewImage} className={classes.avatar} />
+                        ) : (
+                            userDefaultImage === 'user-default.png' ? (
+                                <img src={'/assets/user-default.png'} className={classes.avatar} />
+                            ) : (
+                                <img src={`/uploads/${userDefaultImage}`} className={classes.avatar} />
+                            )
+                        )}
                         <div className={classes.usernameField}>
                             <label htmlFor="username" className={classes.formLabelInput + ' ' + classes.formLabel}>Full Name</label>
                             <input type="text" name="username" id="username" value={newUserName} onChange={updateName} className={classes.formInput} />
                         </div>
                     </div>
                     <div className={classes.userFormBottom}>
-                        <button className={classes.avatarButton}>Upload Avatar</button>
+                        <div className={classes.uploadContainer}>
+                            <input
+                                type="file"
+                                name="image"
+                                id="file"
+                                onChange={handleImageChange}
+                            />
+                            <label className={classes.avatarButton} htmlFor="file">Upload Avatar</label>
+                        </div>
                         <div className={classes.emailField}>
                             <label htmlFor="email" className={classes.formLabelInput + ' ' + classes.formLabel}>Email</label>
                             <input type="email" name="email" id="email" value={newUserEmail} onChange={updateEmail} className={classes.formInput} />

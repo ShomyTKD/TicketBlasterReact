@@ -9,6 +9,8 @@ export const UserProvider = ({ children }) => {
     const [userName, setUserName] = useState('');
     const [userEmail, setUserEmail] = useState('');
     const [userRole, setUserRole] = useState('');
+    const [userDefaultImage, setUserDefaultImage] = useState('');
+    const [searchQuery, setSearchQuery] = useState('');
 
     const fetchUserData = async () => {
         try {
@@ -21,6 +23,7 @@ export const UserProvider = ({ children }) => {
                 const singleUser = res.data.data.singleUser;
                 setUserName(singleUser.username);
                 setUserEmail(singleUser.email);
+                setUserDefaultImage(singleUser.image);
             }
         } catch (error) {
             console.log(error);
@@ -37,6 +40,15 @@ export const UserProvider = ({ children }) => {
         setIsLoggedIn(false);
     };
 
+    const updateDefaultImage = (image) => {
+        setUserDefaultImage(image);
+    };
+
+    const newSearchQuery = (query) => {
+        setSearchQuery(query);
+        localStorage.setItem('searchQuery', query);
+    };
+
     useEffect(() => {
         const token = localStorage.getItem('jwt');
         if (token) {
@@ -46,7 +58,7 @@ export const UserProvider = ({ children }) => {
     }, []);
 
     return (
-        <UserContext.Provider value={{ isLoggedIn, loginSuccess, logout, userID, userName, userEmail, userRole }}>
+        <UserContext.Provider value={{ isLoggedIn, loginSuccess, logout, userID, userName, userEmail, userRole, userDefaultImage, updateDefaultImage, newSearchQuery, searchQuery }}>
             {children}
         </UserContext.Provider>
     )

@@ -43,8 +43,8 @@ export default function UsersManager() {
                 console.log("User not found");
                 return;
             }
-            const userData = users.find(user => user._id === selectedUser);
-            const currentRole = userData.role;
+            const currentUser = users.find(user => user._id === selectedUser);
+            const currentRole = currentUser.role;
             const newRole = currentRole === 'admin' ? 'user' : 'admin';
 
             const res = await axios.patch(`http://localhost:9002/api/v1/users/update-user/change-role/${selectedUser}`);
@@ -91,7 +91,9 @@ export default function UsersManager() {
                 <div className={classes.user} key={i}>
                     <div className={classes.info}>
                         {/* <img src={`/uploads/${user.image}`} alt="event-name" width={72} height={72} className={classes.image} /> */}
-                        <img src={`/assets/avatar.jpg`} alt="profile-pic" className={classes.pfp} />
+                        <img src={
+                            user.image.startsWith('user-') ? `/assets/${user.image}` : `/uploads/${user.image}`
+                        } alt="profile-pic" className={classes.pfp} />
                         <div>
                             <h3 className={classes.name}>{user.username}</h3>
                             <p className={classes.email}>{user.email}</p>

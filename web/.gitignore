@@ -14,6 +14,7 @@ dist-ssr
 
 # Ignore images
 *.jpeg
+*.jpg
 *.png
 
 # Editor directories and files
