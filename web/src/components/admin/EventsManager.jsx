@@ -1,11 +1,13 @@
 import { useState, useEffect } from 'react';
-
+import { Link } from 'react-router-dom';
 import axios from 'axios';
 
 import classes from './EventsManager.module.css'
 
 export default function EventsManager() {
     const [events, setEvents] = useState([]);
+    const [selectedEvent, setSelectedEvent] = useState(null);
+    const [togglePopup, setTogglePopup] = useState(false);
 
     const getEvents = async () => {
         try {
@@ -16,12 +18,24 @@ export default function EventsManager() {
         }
     };
 
+    const deletePopup = () => {
+        setTogglePopup(!togglePopup);
+    }
+
     useEffect(() => {
         getEvents();
     }, []);
 
-    const handleDeleteEvent = () => {
-        console.log('delete event')
+    const handleDeleteEvent = async () => {
+        try {
+            const res = await axios.delete(`http://localhost:9003/api/v1/events/delete-event/${selectedEvent}`);
+            if (res.status === 200) {
+                setEvents(currentEvents => currentEvents.filter(event => event._id !== selectedEvent));
+                setTogglePopup(false);
+            }
+        } catch (error) {
+            console.log(error);
+        }
     }
 
     return (
@@ -42,9 +56,25 @@ export default function EventsManager() {
                             </div>
                         </div>
                     </div>
-                    <button onClick={handleDeleteEvent} className={classes.deleteButton}>Delete Event</button>
+                    <Link onClick={() => {
+                        deletePopup();
+                        setSelectedEvent(event._id);
+                    }} className={classes.deleteButton}>Delete Event</Link>
                 </div>
             ))}
+
+            {togglePopup && (
+                <div className={classes.popupContainer}>
+                    <div>
+                        <h2>Are you sure?</h2>
+                        <p>You are about to delete an event from the system. Please proceed with caution.</p>
+                    </div>
+                    <div className={classes.popupButtons}>
+                        <Link className={classes.cancelButton} onClick={() => setTogglePopup(false)}>Cancel</Link>
+                        <Link className={classes.deleteButton} onClick={() => handleDeleteEvent(selectedEvent)}>Delete</Link>
+                    </div>
+                </div>
+            )}
         </div>
     )
 }
