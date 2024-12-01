@@ -60,7 +60,6 @@
     background-color: #fff;
     border: 2px solid black;
     border-radius: 20px;
-    letter-spacing: -0.88px;
     cursor: pointer;
     padding: 0.4rem 0;
 }
@@ -130,7 +129,6 @@
     color: white;
     padding: 0.6rem 1.8rem;
     font-size: 1rem;
-    letter-spacing: -0.88px;
     cursor: pointer;
 }
 

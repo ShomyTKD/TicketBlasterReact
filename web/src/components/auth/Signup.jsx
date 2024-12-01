@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 
 import axios from 'axios';
@@ -6,13 +6,20 @@ import axios from 'axios';
 import classes from './Signup.module.css';
 
 export default function Signup() {
+    const navigate = useNavigate();
+
+    useEffect(() => {
+        const isLoggedIn = localStorage.getItem('jwt');
+        if (isLoggedIn) {
+            navigate('/');
+        }
+    })
+
     const [username, setUserName] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
     const [userExists, setUserExists] = useState(false);
-
-    const navigate = useNavigate();
 
     const validator = (email) => {
         const emailLower = email.toLowerCase();

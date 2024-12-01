@@ -1,9 +1,18 @@
 import classes from './ForgotPassword.module.css';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 export default function ForgotPassword() {
+    const navigate = useNavigate();
+
+    useEffect(() => {
+        const isLoggedIn = localStorage.getItem('jwt');
+        if (isLoggedIn) {
+            navigate('/');
+        }
+    })
+
     const [email, setEmail] = useState('');
 
     const validator = (email) => {

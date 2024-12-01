@@ -1,16 +1,23 @@
 import { Link, useNavigate } from 'react-router-dom';
 import classes from './Login.module.css';
 import { UserContext } from '../../Context/UserContext';
-import { useState, useContext } from 'react';
+import { useState, useEffect, useContext } from 'react';
 
 import axios from 'axios';
 
 export default function Login() {
+    const navigate = useNavigate();
+
+    useEffect(() => {
+        const isLoggedIn = localStorage.getItem('jwt');
+        if (isLoggedIn) {
+            navigate('/');
+        }
+    })
+
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [invalidCredentials, setInvalidCredentials] = useState(false);
-
-    const navigate = useNavigate();
 
     const validator = (email) => {
         const emailLower = email.toLowerCase();

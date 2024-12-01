@@ -41,7 +41,6 @@
 
 .forgotPasswordButton {
     text-decoration: underline;
-    letter-spacing: -0.99px;
     font-size: 1.125rem;
     color: black;
 }
@@ -69,7 +68,6 @@
     color: black;
     border: 2px solid #FF48AB;
     border-radius: 20px;
-    letter-spacing: -0.88px;
 }
 
 .invalidFormat {

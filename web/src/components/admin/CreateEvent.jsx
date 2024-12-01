@@ -196,7 +196,7 @@ export default function CreateEvent() {
                         <div className={classes.priceAndLocation}>
                             <div className={classes.fieldContainer}>
                                 <label className={classes.label}>
-                                    Ticket Price
+                                    Ticket Price (€)
                                 </label>
                                 <input
                                     id="price"

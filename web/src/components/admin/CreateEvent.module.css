@@ -81,7 +81,6 @@
 .label {
     font-size: 1.125rem;
     font-weight: bold;
-    letter-spacing: -1px;
 }
 
 .input {
@@ -89,6 +88,10 @@
     height: 42px;
     border: 1px solid #000;
     border-radius: 21px;
+    padding: 0 1rem;
+}
+
+select {
     padding: 0 1rem;
 }
 
@@ -102,7 +105,6 @@
 
 .button {
     font-size: 1rem;
-    letter-spacing: -0.88px;
     color: white;
     background-color: #000;
     border-radius: 20px;
@@ -118,7 +120,6 @@
     width: 128px;
     height: 33px;
     font-size: 0.875rem;
-    letter-spacing: -0.77px;
 }
 
 .buttonSave {
@@ -157,19 +158,16 @@
 .relatedEventName {
     font-size: 1.5rem;
     font-weight: bold;
-    letter-spacing: -1.32px;
     color: black;
 }
 
 .relatedEventDate {
     font-size: 1.125rem;
     font-weight: bold;
-    letter-spacing: -1px;
     color: #FF48AB;
 }
 
 .relatedEventLocation {
     font-size: 0.875rem;
-    letter-spacing: -0.77px;
     color: #393939;
 }
