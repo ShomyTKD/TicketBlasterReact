@@ -74,14 +74,6 @@ export default function CreateEvent() {
                 );
             }
 
-            /* console.log(formData.get('name') !== '')
-            console.log(formData.get('category'))
-            console.log(formData.get('category') !== '')
-            console.log(formData.get('date') !== '')
-            console.log(formData.get('location') !== '')
-            console.log(formData.get('description') !== '')
-            console.log(formData.get('price') !== '') */
-
             if (
                 formData.get('name') !== '' &&
                 formData.get('category') !== '' &&
@@ -97,7 +89,7 @@ export default function CreateEvent() {
                 );
                 if (res.status === 201) {
                     console.log('Event created successfully');
-                    navigate('/user/events');
+                    navigate('/admin/events');
                 } else {
                     throw new Error(
                         `Failed to create event with status ${res.status}`

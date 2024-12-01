@@ -18,7 +18,7 @@ export default function UserPage() {
         try {
             await axios.get('http://localhost:9001/api/v1/auth/logout');
             localStorage.removeItem('jwt');
-            logout()
+            logout();
             navigate('/');
         } catch (err) {
             console.log(err);
@@ -26,6 +26,11 @@ export default function UserPage() {
     };
 
     useEffect(() => {
+        const isLoggedIn = localStorage.getItem('jwt');
+        if (!isLoggedIn) {
+            navigate('/login');
+        }
+
         const path = location.pathname.split('/')[2];
         if (path === 'events') {
             setTitle('Events');
@@ -38,7 +43,7 @@ export default function UserPage() {
         } else if (path === 'user-details') {
             setTitle('User Details')
         };
-    }, [location]);
+    }, [location, navigate]);
 
     return (
         <div className="wrapper">
@@ -46,17 +51,17 @@ export default function UserPage() {
                 <div className={classes.title}>
                     <h1>{title}</h1>
                     {(userRole === 'admin' && title === 'Events') && (
-                        <Link to={'/user/create-event'} className={classes.createEventButton}>Create Event</Link>
+                        <Link to={'/admin/create-event'} className={classes.createEventButton}>Create Event</Link>
                     )}
                 </div>
                 <ul className={classes.links}>
                     {userRole === 'admin' && (
-                        <li><NavLink to="/user/events" className={({ isActive }) => classes.navLink + ' ' + (isActive ? classes.active : '')}>
+                        <li><NavLink to="/admin/events" className={({ isActive }) => classes.navLink + ' ' + (isActive ? classes.active : '')}>
                             Events
                         </NavLink></li>
                     )}
                     {userRole === 'admin' && (
-                        <li><NavLink to="/user/users" className={({ isActive }) => classes.navLink + ' ' + (isActive ? classes.active : '')}>
+                        <li><NavLink to="/admin/users" className={({ isActive }) => classes.navLink + ' ' + (isActive ? classes.active : '')}>
                             Users
                         </NavLink></li>
                     )}

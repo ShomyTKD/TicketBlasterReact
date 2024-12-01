@@ -17,6 +17,7 @@ import UserPage from "./components/user/UserPage";
 import EventsManager from "./components/admin/EventsManager";
 import CreateEvent from "./components/admin/CreateEvent";
 import UsersManager from "./components/admin/UsersManager";
+import AdminRoutes from "./routes/AdminRoutes";
 
 const router = createBrowserRouter([
     {
@@ -71,20 +72,35 @@ const router = createBrowserRouter([
                         path: "user-details",
                         element: <UserDetails />
                     },
+                ]
+            },
+            {
+                path: "/admin",
+                element: <UserPage />,
+                children: [
                     {
                         path: "events",
-                        element: <EventsManager />
+                        element:
+                            <AdminRoutes>
+                                <EventsManager />
+                            </AdminRoutes>
                     },
                     {
                         path: "create-event",
-                        element: <CreateEvent />
+                        element:
+                            <AdminRoutes>
+                                <CreateEvent />
+                            </AdminRoutes>
                     },
                     {
                         path: "users",
-                        element: <UsersManager />
+                        element:
+                            <AdminRoutes>
+                                <UsersManager />
+                            </AdminRoutes>
                     },
                 ]
-            },
+            }
 
         ],
         errorElement: <h1>Error</h1>
