@@ -20,9 +20,12 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static('public'));
 
+app.get('/api/v1/users/get-all-users', userHandler.getUsers);
 app.get('/api/v1/users/get-user/:id', userHandler.getUser);
 app.patch('/api/v1/users/update-user/:id', upload.none(), userHandler.updateUser);
+app.patch('/api/v1/users/update-user/change-role/:id', userHandler.updateUserRole);
 app.patch('/api/v1/users/update-user/change-password/:id', userHandler.updateUserPassword);
+app.delete('/api/v1/users/delete-user/:id', userHandler.deleteUser);
 
 
 app.listen(process.env.USERS_PORT, (err) => {

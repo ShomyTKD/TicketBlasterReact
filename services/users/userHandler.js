@@ -46,9 +46,34 @@ const updateUserPassword = async (req, res) => {
     }
 }
 
+const deleteUser = async (req, res) => {
+    try {
+        const user = await User.findByIdAndDelete(req.params.id);
+        res.send(user);
+    } catch (error) {
+        res.status(400).send(error);
+    }
+}
+
+const updateUserRole = async (req, res) => {
+    try {
+        const user = await User.findById(req.params.id);
+        if (!user) {
+            return res.status(404).send('User not found');
+        }
+        const newRole = user.role === 'admin' ? 'user' : 'admin';
+        const updatedUser = await User.findByIdAndUpdate(req.params.id, { role: newRole }, { new: true });
+        res.send(updatedUser);
+    } catch (error) {
+        res.status(400).send(error);
+    }
+}
+
 module.exports = {
     getUsers,
     getUser,
     updateUser,
-    updateUserPassword
+    updateUserPassword,
+    deleteUser,
+    updateUserRole
 }
