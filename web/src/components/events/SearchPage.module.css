@@ -1,0 +1,61 @@
+.heading {
+    margin: 3.5rem 0 2rem 0;
+}
+
+.events {
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+}
+
+.event {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+}
+
+.eventLeft {
+    display: flex;
+    gap: 2rem;
+}
+
+.image {
+    width: 16rem;
+    height: 9.5rem;
+    border-radius: 20px;
+    object-fit: cover;
+}
+
+.eventInfo h2 {
+    font-size: 2.3rem;
+    font-weight: bold;
+}
+
+.description {
+    color: #393939;
+    padding: 1rem 0;
+}
+
+.date {
+    font-size: 1.125rem;
+    font-weight: bold;
+    color: #FF48AB;
+}
+
+.location {
+    font-weight: bold;
+    color: #393939;
+}
+
+.button {
+    background-color: black;
+    color: white;
+    border: 2px solid #000;
+    height: 2.625rem;
+    min-width: 8rem;
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    font-size: 1rem;
+    cursor: pointer;
+    text-align: center;
+}

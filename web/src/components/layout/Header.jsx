@@ -1,5 +1,5 @@
-import { useContext } from "react";
-import { Link, NavLink } from 'react-router-dom';
+import { useState, useContext } from "react";
+import { Link, NavLink, useNavigate } from 'react-router-dom';
 import { UserContext } from '../../Context/UserContext';
 
 import classes from './Header.module.css'
@@ -8,7 +8,21 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCartShopping, faUser } from '@fortawesome/free-solid-svg-icons'
 
 export default function Header() {
-    const { isLoggedIn } = useContext(UserContext);
+    const { isLoggedIn, newSearchQuery } = useContext(UserContext);
+    const [query, setQuery] = useState('');
+
+    const navigate = useNavigate();
+
+    const handleSearch = (e) => {
+        if (query.trim() === '') {
+            return;
+        }
+        if (e.key === 'Enter') {
+            newSearchQuery(query.trim());
+            navigate('/events');
+            setQuery('');
+        }
+    };
 
     return (
         <div className={classes.header}>
@@ -27,7 +41,7 @@ export default function Header() {
                     </div>
                     <div className={classes.headerRight}>
                         <ul>
-                            <input type="search" name="keyword" id="keyword" placeholder="Search" className={classes.searchBar}></input>
+                            <input type="search" name="keyword" id="keyword" placeholder="Search" onKeyDown={handleSearch} value={query} onChange={(e) => setQuery(e.target.value)} className={classes.searchBar}></input>
                             {isLoggedIn ? (
                                 <div className={classes.headerIconButtons}>
                                     <Link to='/cart'><FontAwesomeIcon icon={faCartShopping} className={classes.icons} /></Link>

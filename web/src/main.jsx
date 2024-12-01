@@ -18,6 +18,7 @@ import EventsManager from "./components/admin/EventsManager";
 import CreateEvent from "./components/admin/CreateEvent";
 import UsersManager from "./components/admin/UsersManager";
 import AdminRoutes from "./routes/AdminRoutes";
+import SearchPage from "./components/events/SearchPage";
 
 const router = createBrowserRouter([
     {
@@ -35,6 +36,10 @@ const router = createBrowserRouter([
             {
                 path: "/comedy",
                 element: <Comedy />
+            },
+            {
+                path: "/events",
+                element: <SearchPage />
             },
             {
                 path: "/event/:id",
