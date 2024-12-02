@@ -43,7 +43,7 @@ export default function Signup() {
                 return;
             }
             if (!validatePassword) {
-                console.log('Please enter a valid password');
+                console.log('Password must be at least 8 characters long');
                 return;
             }
             if (password !== confirmPassword) {
