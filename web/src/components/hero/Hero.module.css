@@ -26,12 +26,17 @@
     font-size: 40px;
     font-weight: bold;
     color: white;
+    -webkit-text-stroke-width: 1px;
+    -webkit-text-stroke-color: black;
+
 }
 
 .heroTime {
     font-size: 28px;
     opacity: 0.7;
     color: white;
+    -webkit-text-stroke-width: 1px;
+    -webkit-text-stroke-color: black;
 }
 
 .heroButton {

@@ -13,7 +13,7 @@ export default function SearchPage() {
 
     const getEvents = async () => {
         try {
-            const res = await axios.get('http://localhost:9003/api/v1/events/get-all-events');
+            const res = await axios.get('/api/v1/events/get-all-events');
             const filteredEvents = res.data.filter(event => {
                 return (
                     event.name.toLowerCase().includes(searchQuery.toLowerCase()) ||

@@ -12,7 +12,7 @@ export default function Concerts() {
 
     const getConcerts = async () => {
         try {
-            const res = await axios.get('http://localhost:9003/api/v1/events/get-all-events');
+            const res = await axios.get('/api/v1/events/get-all-events');
             setConcerts(res.data);
         } catch (error) {
             console.log(error);

@@ -11,7 +11,7 @@ export default function EventsManager() {
 
     const getEvents = async () => {
         try {
-            const response = await axios.get('http://localhost:9003/api/v1/events/get-all-events');
+            const response = await axios.get('/api/v1/events/get-all-events');
             setEvents(response.data);
         } catch (error) {
             console.log(error);
@@ -28,7 +28,7 @@ export default function EventsManager() {
 
     const handleDeleteEvent = async () => {
         try {
-            const res = await axios.delete(`http://localhost:9003/api/v1/events/delete-event/${selectedEvent}`);
+            const res = await axios.delete(`/api/v1/events/delete-event/${selectedEvent}`);
             if (res.status === 200) {
                 setEvents(currentEvents => currentEvents.filter(event => event._id !== selectedEvent));
                 setTogglePopup(false);

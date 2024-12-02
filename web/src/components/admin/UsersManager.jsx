@@ -13,7 +13,7 @@ export default function UsersManager() {
 
     const getUsers = async () => {
         try {
-            const response = await axios.get('http://localhost:9002/api/v1/users/get-all-users');
+            const response = await axios.get('/api/v1/users/get-all-users');
             setUsers(response.data);
         } catch (error) {
             console.log(error);
@@ -26,7 +26,7 @@ export default function UsersManager() {
                 console.log("User not found");
                 return;
             }
-            const res = await axios.delete(`http://localhost:9002/api/v1/users/delete-user/${selectedUser}`);
+            const res = await axios.delete(`/api/v1/users/delete-user/${selectedUser}`);
             console.log(res);
             if (res.status === 200) {
                 setUsers(currentUsers => currentUsers.filter(user => user._id !== selectedUser));
@@ -47,7 +47,7 @@ export default function UsersManager() {
             const currentRole = currentUser.role;
             const newRole = currentRole === 'admin' ? 'user' : 'admin';
 
-            const res = await axios.patch(`http://localhost:9002/api/v1/users/update-user/change-role/${selectedUser}`);
+            const res = await axios.patch(`/api/v1/users/update-user/change-role/${selectedUser}`);
             console.log(res.status)
             if (res.status === 200) {
                 setUsers(currentUsers => {

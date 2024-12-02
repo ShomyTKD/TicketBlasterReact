@@ -12,7 +12,7 @@ export default function SingleEvent() {
 
     const getEvent = async () => {
         try {
-            const res = await axios.get(`http://localhost:9003/api/v1/events/get-event/${id}`);
+            const res = await axios.get(`/api/v1/events/get-event/${id}`);
             console.log(res.data)
             setEvent(res.data);
         } catch (error) {

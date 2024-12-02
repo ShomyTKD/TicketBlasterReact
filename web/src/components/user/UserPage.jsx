@@ -16,7 +16,7 @@ export default function UserPage() {
 
     const handleLogout = async () => {
         try {
-            await axios.get('http://localhost:9001/api/v1/auth/logout');
+            await axios.get('/api/v1/auth/logout');
             localStorage.removeItem('jwt');
             logout();
             navigate('/');

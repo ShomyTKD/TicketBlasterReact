@@ -16,6 +16,7 @@ dist-ssr
 *.jpeg
 *.jpg
 *.png
+*.webp
 
 # Editor directories and files
 .vscode/*

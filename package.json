@@ -4,7 +4,7 @@
 	"description": "Project App for Semos Academy",
 	"main": "server.js",
 	"scripts": {
-		"start": "concurrently \"nodemon ./services/auth/index.js\" \"nodemon ./services/users/index.js\" \"nodemon ./services/events/index.js\" \"nodemon ./services/upload/index.js\""
+		"start": "concurrently \"nodemon ./services/auth/index.js\" \"nodemon ./services/users/index.js\" \"nodemon ./services/events/index.js\" \"nodemon ./services/upload/index.js\" \"nodemon ./services/proxy/index.js\""
 	},
 	"author": "",
 	"license": "ISC",

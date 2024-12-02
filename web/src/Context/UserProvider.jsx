@@ -19,7 +19,7 @@ export const UserProvider = ({ children }) => {
                 const decodedToken = jwtDecode(token);
                 setUserID(decodedToken.id);
                 setUserRole(decodedToken.role);
-                const res = await axios.get(`http://localhost:9002/api/v1/users/get-user/${decodedToken.id}`);
+                const res = await axios.get(`/api/v1/users/get-user/${decodedToken.id}`);
                 const singleUser = res.data.data.singleUser;
                 setUserName(singleUser.username);
                 setUserEmail(singleUser.email);

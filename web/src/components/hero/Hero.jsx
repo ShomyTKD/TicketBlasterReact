@@ -9,7 +9,7 @@ export default function Hero() {
 
     const getHeroEvent = async () => {
         try {
-            const res = await axios.get('http://localhost:9003/api/v1/events/get-all-events');
+            const res = await axios.get('/api/v1/events/get-all-events');
             setHeroEvent(res.data[0]);
         } catch (error) {
             console.log(error);

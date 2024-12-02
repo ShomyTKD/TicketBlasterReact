@@ -83,10 +83,7 @@ export default function CreateEvent() {
                 formData.get('price') !== '' &&
                 formData.get('image') !== ''
             ) {
-                const res = await axios.post(
-                    'http://localhost:9003/api/v1/events/create-event',
-                    formData
-                );
+                const res = await axios.post('/api/v1/events/create-event', formData);
                 if (res.status === 201) {
                     console.log('Event created successfully');
                     navigate('/admin/events');

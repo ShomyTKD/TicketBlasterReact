@@ -26,7 +26,7 @@ export default function ChangeEvent() {
 
     const getEvent = async () => {
         try {
-            const res = await axios.get(`http://localhost:9003/api/v1/events/get-event/${id}`);
+            const res = await axios.get(`/api/v1/events/get-event/${id}`);
             const event = res.data;
             const formattedDate = event.date.split('T')[0];
 
@@ -104,10 +104,7 @@ export default function ChangeEvent() {
                 formData.get('price') !== '' &&
                 formData.get('image') !== ''
             ) {
-                const res = await axios.patch(
-                    `http://localhost:9003/api/v1/events/update-event/${id}`,
-                    formData
-                );
+                const res = await axios.patch(`/api/v1/events/update-event/${id}`, formData);
                 if (res.status === 200) {
                     console.log('Event edited successfully');
                     navigate('/admin/events');

@@ -33,7 +33,7 @@ export default function Login() {
         e.preventDefault();
         try {
             axios.defaults.withCredentials = true
-            const res = await axios.post('http://localhost:9001/api/v1/auth/login', {
+            const res = await axios.post('/api/v1/auth/login', {
                 email,
                 password
             })

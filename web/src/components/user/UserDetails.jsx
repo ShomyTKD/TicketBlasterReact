@@ -91,7 +91,7 @@ export default function UserDetails() {
                 formData.has('image')
             ) {
                 const res = await axios.patch(
-                    `http://localhost:9002/api/v1/users/update-user/${userID}`,
+                    `/api/v1/users/update-user/${userID}`,
                     formData
                 );
                 if (res.status === 200) {
@@ -125,7 +125,7 @@ export default function UserDetails() {
 
             if (newUserPassword === newUserPasswordConfirm) {
                 const res = await axios.patch(
-                    `http://localhost:9002/api/v1/users/update-user/change-password/${userID}`,
+                    `/api/v1/users/update-user/change-password/${userID}`,
                     {
                         password: newUserPassword,
                     }
