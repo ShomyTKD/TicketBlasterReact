@@ -42,7 +42,7 @@ export default function EventsManager() {
         <div className={classes.container}>
             {events && events.map((event, i) => (
                 <div className={classes.event} key={i}>
-                    <div className={classes.info}>
+                    <Link to={`/admin/edit-event/${event._id}`} className={classes.info}>
                         <img src={`/uploads/${event.image}`} alt="event-name" width={149} height={88} className={classes.image} />
                         <div className={classes.content}>
                             <h3 className={classes.name}>{event.name}</h3>
@@ -52,10 +52,10 @@ export default function EventsManager() {
                                     month: 'short',
                                     day: 'numeric'
                                 })}</p>
-                                <p>{event.location}</p>
+                                <p className={classes.location}>{event.location}</p>
                             </div>
                         </div>
-                    </div>
+                    </Link>
                     <Link onClick={() => {
                         deletePopup();
                         setSelectedEvent(event._id);

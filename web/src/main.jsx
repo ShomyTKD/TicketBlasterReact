@@ -19,6 +19,7 @@ import CreateEvent from "./components/admin/CreateEvent";
 import UsersManager from "./components/admin/UsersManager";
 import AdminRoutes from "./routes/AdminRoutes";
 import SearchPage from "./components/events/SearchPage";
+import ChangeEvent from "./components/admin/ChangeEvent";
 
 const router = createBrowserRouter([
     {
@@ -95,6 +96,13 @@ const router = createBrowserRouter([
                         element:
                             <AdminRoutes>
                                 <CreateEvent />
+                            </AdminRoutes>
+                    },
+                    {
+                        path: "edit-event/:id",
+                        element:
+                            <AdminRoutes>
+                                <ChangeEvent />
                             </AdminRoutes>
                     },
                     {

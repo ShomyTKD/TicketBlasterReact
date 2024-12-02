@@ -1,10 +1,10 @@
-import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useState, useEffect } from 'react';
+import { useNavigate, useParams } from 'react-router-dom';
 import axios from 'axios';
 
-import classes from './CreateEvent.module.css';
+import classes from './ChangeEvent.module.css';
 
-export default function CreateEvent() {
+export default function ChangeEvent() {
     const [selectedCategory, setSelectedCategory] = useState('');
     const [selectedImage, setSelectedImage] = useState('');
     const [imagePreview, setImagePreview] = useState(null);
@@ -20,14 +20,35 @@ export default function CreateEvent() {
         relatedEvents: [],
     });
 
+    const { id } = useParams();
+
     const navigate = useNavigate();
+
+    const getEvent = async () => {
+        try {
+            const res = await axios.get(`http://localhost:9003/api/v1/events/get-event/${id}`);
+            const event = res.data;
+            const formattedDate = event.date.split('T')[0];
+
+            setEventData({ ...event, date: formattedDate });
+            setSelectedCategory(event.category);
+            setImagePreview(`/uploads/${event.image}`);
+        } catch (error) {
+            console.log(error);
+        }
+    };
+
+    useEffect(() => {
+        if (id) {
+            getEvent();
+        }
+    }, [id]);
 
     const handleNameChange = (event) => {
         setEventData({ ...eventData, name: event.target.value });
     };
 
     const handleCategoryChange = (event) => {
-        console.log(event.target.value);
         setSelectedCategory(event.target.value);
         setEventData({ ...eventData, category: event.target.value });
     };
@@ -55,7 +76,7 @@ export default function CreateEvent() {
         };
     };
 
-    const createEvent = async (e) => {
+    const editEvent = async (e) => {
         e.preventDefault();
         try {
             const formData = new FormData();
@@ -83,16 +104,16 @@ export default function CreateEvent() {
                 formData.get('price') !== '' &&
                 formData.get('image') !== ''
             ) {
-                const res = await axios.post(
-                    'http://localhost:9003/api/v1/events/create-event',
+                const res = await axios.patch(
+                    `http://localhost:9003/api/v1/events/update-event/${id}`,
                     formData
                 );
-                if (res.status === 201) {
-                    console.log('Event created successfully');
+                if (res.status === 200) {
+                    console.log('Event edited successfully');
                     navigate('/admin/events');
                 } else {
                     throw new Error(
-                        `Failed to create event with status ${res.status}`
+                        `Failed to edit event with status ${res.status}`
                     );
                 }
             }
@@ -102,8 +123,8 @@ export default function CreateEvent() {
     };
 
     return (
-        <div id={classes.createEvent}>
-            <form method="post" className={classes.createEventForm}>
+        <div id={classes.editEvent}>
+            <form method="post" className={classes.editEventForm}>
                 <div className={classes.topForm}>
                     <div className={classes.formLeft}>
                         <div className={classes.fieldContainer}>
@@ -275,7 +296,7 @@ export default function CreateEvent() {
 
                 <button
                     className={classes.button + ' ' + classes.buttonSave}
-                    onClick={createEvent}
+                    onClick={editEvent}
                 >
                     Save
                 </button>

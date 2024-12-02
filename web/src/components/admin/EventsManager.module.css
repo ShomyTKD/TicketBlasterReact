@@ -19,6 +19,7 @@
     display: flex;
     align-items: center;
     gap: 1.5rem;
+
 }
 
 .image {
@@ -37,6 +38,7 @@
 .name {
     font-weight: bold;
     font-size: 1.375rem;
+    color: #393939;
 }
 
 .dateAndLocation {
@@ -48,6 +50,11 @@
 
 .date {
     color: #FF48AB;
+}
+
+.location {
+    font-size: 1.125rem;
+    color: #393939;
 }
 
 .deleteButton {

@@ -59,7 +59,10 @@ const deleteEvent = async (req, res) => {
 
 const updateEvent = async (req, res) => {
     try {
-        const event = await Event.findByIdAndUpdate(req.params.id, req.body, { new: true });
+        if (req.file) {
+            uploadedImage = req.file.filename;
+        };
+        const event = await Event.findByIdAndUpdate(req.params.id, { ...req.body, image: uploadedImage }, { new: true });
         res.status(200).json(event);
     } catch (error) {
         res.status(400).send(error);

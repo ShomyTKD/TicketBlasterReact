@@ -1,0 +1,173 @@
+.editEventForm {
+    display: flex;
+    flex-direction: column;
+    gap: 2.5rem;
+    margin-bottom: 5rem;
+}
+
+.topForm {
+    display: flex;
+    gap: 2.5rem;
+}
+
+.formLeft {
+    display: flex;
+    flex-direction: column;
+    gap: 2.5rem;
+}
+
+.formRight {
+    display: flex;
+    flex-direction: column;
+    gap: 2.5rem;
+    justify-content: space-evenly;
+}
+
+.categoryAndDate {
+    display: flex;
+    gap: 2.5rem;
+}
+
+.priceAndLocation {
+    display: flex;
+    gap: 2.5rem;
+}
+
+.uploadContainer input {
+    display: none;
+}
+
+.buttonUpload {
+    width: 357px;
+    height: 42px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.imagePreview {
+    width: 357px;
+    height: 211px;
+    border: 1px solid #707070;
+    border-radius: 18px;
+    background-color: #F0F0F0;
+    color: #393939;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    font-size: 1.125rem;
+}
+
+.imagePreview img {
+    width: 357px;
+    height: 211px;
+    object-fit: cover;
+    border: 1px solid #707070;
+    border-radius: 18px;
+}
+
+.relatedSelection {
+    display: flex;
+    gap: 2.5rem;
+}
+
+.fieldContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.label {
+    font-size: 1.125rem;
+    font-weight: bold;
+}
+
+.input {
+    width: 357px;
+    height: 42px;
+    border: 1px solid #000;
+    border-radius: 21px;
+    padding: 0 1rem;
+}
+
+select {
+    padding: 0 1rem;
+}
+
+.textarea {
+    width: 750px;
+    height: 141px;
+    border: 1px solid #000;
+    border-radius: 21px;
+    padding: 1rem;
+}
+
+.button {
+    font-size: 1rem;
+    color: white;
+    background-color: #000;
+    border-radius: 20px;
+    height: 42px;
+    cursor: pointer;
+}
+
+.buttonAdd {
+    width: 116px;
+}
+
+.buttonRemove {
+    width: 128px;
+    height: 33px;
+    font-size: 0.875rem;
+}
+
+.buttonSave {
+    width: 116px;
+    display: flex;
+    align-self: flex-end;
+    align-items: center;
+    justify-content: center;
+}
+
+.relatedEvents {
+    display: flex;
+    flex-direction: column;
+    gap: 2.5rem;
+}
+
+.relatedEvent {
+    display: flex;
+    gap: 1.5rem;
+}
+
+.relatedEventImg {
+    width: 200px;
+    height: 153px;
+    background: no-repeat center center;
+    background-size: cover;
+    border-radius: 20px;
+}
+
+.relatedEventInfo {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.relatedEventName {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: black;
+}
+
+.relatedEventDate {
+    font-size: 1.125rem;
+    font-weight: bold;
+    color: #FF48AB;
+}
+
+.relatedEventLocation {
+    font-size: 0.875rem;
+    color: #393939;
+}

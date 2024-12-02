@@ -36,6 +36,8 @@ export default function UserPage() {
             setTitle('Events');
         } else if (path === 'create-event') {
             setTitle('Create Event');
+        } else if (path === 'edit-event') {
+            setTitle('Edit Event');
         } else if (path === 'users') {
             setTitle('Users')
         } else if (path === 'tickets-history') {
