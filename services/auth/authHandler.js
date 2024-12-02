@@ -14,6 +14,22 @@ const signUp = async (req, res) => {
         if (existingUser) {
             return res.status(400).json({ message: 'User already exists' });
         }
+
+        const validator = (email) => {
+            const emailLower = email.toLowerCase();
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            return emailRegex.test(emailLower);
+        };
+
+        const validateName = username.trim().split(' ').length >= 2;
+        const validateEmail = validator(email);
+
+        if (!validateName) {
+            return res.status(400).json({ message: 'Invalid name - must be at least 2 words' });
+        }
+        if (!validateEmail) {
+            return res.status(400).json({ message: 'Invalid email address' });
+        }
         if (password !== confirmPassword) {
             return res.status(400).json({ message: 'Passwords do not match' });
         }

@@ -34,6 +34,23 @@ export default function Signup() {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
+            if (!validateName) {
+                console.log('Please enter a valid name');
+                return;
+            }
+            if (!validateEmail) {
+                console.log('Please enter a valid email');
+                return;
+            }
+            if (!validatePassword) {
+                console.log('Please enter a valid password');
+                return;
+            }
+            if (password !== confirmPassword) {
+                console.log('Passwords do not match');
+                return;
+            }
+
             const res = await axios.post('http://localhost:9001/api/v1/auth/signup', {
                 username,
                 email,
