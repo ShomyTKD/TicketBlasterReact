@@ -4,6 +4,8 @@ import axios from 'axios';
 
 import classes from './CreateEvent.module.css';
 
+import Button from '../ui/Button';
+
 export default function CreateEvent() {
     const [selectedCategory, setSelectedCategory] = useState('');
     const [selectedImage, setSelectedImage] = useState('');
@@ -227,13 +229,9 @@ export default function CreateEvent() {
                         <label className={classes.label}>Related Events</label>
                         <div className={classes.relatedSelection}>
                             <input className={classes.input} type="text" />
-                            <button
-                                className={
-                                    classes.button + ' ' + classes.buttonAdd
-                                }
-                            >
+                            <Button variant='secondary'>
                                 Add
-                            </button>
+                            </Button>
                         </div>
                     </div>
 

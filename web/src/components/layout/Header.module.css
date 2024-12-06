@@ -26,7 +26,7 @@
 .headerRight {
     display: flex;
     align-items: center;
-    margin-top: 0.9rem;
+    margin-top: 1.2rem;
 }
 
 .headerRight ul {
@@ -42,7 +42,7 @@
 .searchBar {
     width: 295px;
     border-radius: 20px;
-    height: 42px;
+    height: 2.625rem;
     background-color: white;
     border: none;
 }
@@ -58,21 +58,21 @@
 
 .loginButton {
     border-radius: 20px;
-    height: 42px;
+    height: 2.625rem;
     background-color: #ff48ab;
     color: black;
     padding: 0.6rem 1.8rem;
     font-size: 1rem;
-    font-weight: 900;
+    font-weight: bold;
 }
 
 .createAccountButton {
     border-radius: 20px;
-    height: 42px;
+    height: 2.625rem;
     border: 1px solid #EE47A0;
     padding: 0.6rem 1.8rem;
     font-size: 1rem;
-    font-weight: 900;
+    font-weight: bold;
     color: white;
 }
 
@@ -97,6 +97,7 @@
 
 .navLink:hover {
     color: #ff48ab;
+    transition: ease-in-out 0.2s;
 }
 
 .active {

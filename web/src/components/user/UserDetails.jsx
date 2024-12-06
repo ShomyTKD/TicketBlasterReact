@@ -7,6 +7,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
 
 import classes from './UserDetails.module.css';
+import Button from '../ui/Button';
 
 export default function UserDetails() {
     const [passwordForm, setPasswordForm] = useState(false);
@@ -243,23 +244,23 @@ export default function UserDetails() {
                         </div>
                     </div>
                 </div>
-                <button
+                <Button
                     onClick={handleUserDetailsSubmit}
-                    className={classes.submitButton}
+                    variant='secondary'
                 >
                     Submit
-                </button>
+                </Button>
             </form>
 
             <div className={classes.passwordChange}>
                 <div className={classes.passwordChangeFlex}>
                     <h3>Password</h3>
-                    <button
-                        className={classes.changePasswordButton}
+                    <Button
+                        variant='primary'
                         onClick={togglePasswordForm}
                     >
                         Change Password
-                    </button>
+                    </Button>
                 </div>
                 {passwordForm && (
                     <form className={classes.passwordForm}>
@@ -326,12 +327,12 @@ export default function UserDetails() {
                             </div>
 
                         </div>
-                        <button
+                        <Button
                             onClick={handlePasswordSubmit}
-                            className={classes.submitButton}
+                            variant='secondary'
                         >
                             Submit
-                        </button>
+                        </Button>
                     </form>
                 )}
             </div>

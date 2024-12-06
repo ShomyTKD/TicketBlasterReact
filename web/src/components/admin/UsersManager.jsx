@@ -1,8 +1,9 @@
 import { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
 import axios from 'axios';
 
 import classes from './UsersManager.module.css'
+
+import Button from '../ui/Button';
 
 export default function UsersManager() {
     const [users, setUsers] = useState([]);
@@ -101,27 +102,27 @@ export default function UsersManager() {
                     </div>
                     <div className={classes.buttons}>
                         {user.role === 'user' && (
-                            <Link className={classes.roleButton} onClick={() => {
+                            <Button variant='outline-pink' onClick={() => {
                                 setSelectedUser(user._id);
                                 adminPopup();
                             }}>
                                 Make Admin
-                            </Link>
+                            </Button>
                         )}
                         {user.role === 'admin' && (
-                            <Link className={classes.roleButton} onClick={() => {
+                            <Button variant='outline-pink' onClick={() => {
                                 setSelectedUser(user._id);
                                 userPopup();
                             }}>
                                 Make User
-                            </Link>
+                            </Button>
                         )}
-                        <Link className={classes.deleteButton} onClick={() => {
+                        <Button variant='secondary' onClick={() => {
                             setSelectedUser(user._id);
                             deletePopup();
                         }}>
                             Delete User
-                        </Link>
+                        </Button>
                     </div>
                 </div>
             ))}
@@ -133,8 +134,8 @@ export default function UsersManager() {
                         <p>You are about to delete this user. Please proceed with caution.</p>
                     </div>
                     <div className={classes.popupButtons}>
-                        <Link className={classes.cancelButton} onClick={() => setToggleDeletePopup(false)}>Cancel</Link>
-                        <Link className={classes.actionButton} onClick={() => handleDeleteUser(selectedUser)}>Delete user</Link>
+                        <Button variant='outline' onClick={() => setToggleDeletePopup(false)}>Cancel</Button>
+                        <Button variant='secondary' onClick={() => handleDeleteUser(selectedUser)}>Delete user</Button>
                     </div>
                 </div>
             )}
@@ -146,8 +147,8 @@ export default function UsersManager() {
                         <p>You are about to downgrade a user from administrator. Please proceed with caution.</p>
                     </div>
                     <div className={classes.popupButtons}>
-                        <Link className={classes.cancelButton} onClick={() => setToggleUserPopup(false)}>Cancel</Link>
-                        <Link className={classes.actionButton} onClick={() => handleRoleChange(selectedUser)}>Downgrade user</Link>
+                        <Button variant='outline' onClick={() => setToggleUserPopup(false)}>Cancel</Button>
+                        <Button variant='secondary' onClick={() => handleRoleChange(selectedUser)}>Downgrade user</Button>
                     </div>
                 </div>
             )}
@@ -159,8 +160,8 @@ export default function UsersManager() {
                         <p>You are about to make a user administrator of the system. Please proceed with caution.</p>
                     </div>
                     <div className={classes.popupButtons}>
-                        <Link className={classes.cancelButton} onClick={() => setToggleAdminPopup(false)}>Cancel</Link>
-                        <Link className={classes.actionButton} onClick={() => handleRoleChange(selectedUser)}>Make user admin</Link>
+                        <Button variant='outline' onClick={() => setToggleAdminPopup(false)}>Cancel</Button>
+                        <Button variant='secondary' onClick={() => handleRoleChange(selectedUser)}>Make user admin</Button>
                     </div>
                 </div>
             )}

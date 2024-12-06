@@ -1,10 +1,10 @@
 import { useState, useEffect, useContext } from 'react';
-import { Link } from 'react-router-dom';
 import axios from 'axios';
 
 import { UserContext } from '../../Context/UserContext';
 
 import classes from './SearchPage.module.css'
+import Button from '../ui/Button';
 
 export default function SearchPage() {
     const [events, setEvents] = useState([]);
@@ -54,7 +54,7 @@ export default function SearchPage() {
                                 <p className={classes.location}>{event.location}</p>
                             </div>
                         </div>
-                        <Link to={`/event/${event._id}`} className={classes.button}>Buy Tickets</Link>
+                        <Button href={`/event/${event._id}`} variant='secondary'>Buy Tickets</Button>
                     </div>
                 ))
                 ) : (

@@ -5,6 +5,7 @@ import { UserContext } from '../../Context/UserContext';
 import axios from 'axios';
 
 import classes from './UserPage.module.css';
+import Button from '../ui/Button';
 
 export default function UserPage() {
     const { logout, userRole } = useContext(UserContext);
@@ -53,7 +54,7 @@ export default function UserPage() {
                 <div className={classes.title}>
                     <h1>{title}</h1>
                     {(userRole === 'admin' && title === 'Events') && (
-                        <Link to={'/admin/create-event'} className={classes.createEventButton}>Create Event</Link>
+                        <Button href={'/admin/create-event'} variant="primary">Create Event</Button>
                     )}
                 </div>
                 <ul className={classes.links}>

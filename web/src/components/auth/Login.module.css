@@ -34,40 +34,14 @@
 
 .loginOptions {
     display: flex;
+    flex-direction: column;
+    margin-top: 2rem;
+    gap: 2rem;
+}
+
+.buttons {
+    display: flex;
     justify-content: space-between;
-    align-items: center;
-    margin: 2.3rem 0;
-}
-
-.forgotPasswordButton {
-    text-decoration: underline;
-    font-size: 1.125rem;
-    color: black;
-}
-
-.loginButton {
-    width: 8rem;
-    height: 2.625rem;
-    border-radius: 20px;
-    border: 1px solid #FF48AB;
-    background-color: #FF48AB;
-    color: #fff;
-    font-size: 16px;
-    font-weight: bold;
-    cursor: pointer;
-}
-
-.noAccountButton {
-    display: block;
-    padding: 0.5rem 0;
-    text-align: center;
-    width: 100%;
-    height: 2.625rem;
-    font-size: 1rem;
-    font-weight: bold;
-    color: black;
-    border: 2px solid #FF48AB;
-    border-radius: 20px;
 }
 
 .invalidFormat {

@@ -1,6 +1,7 @@
 import classes from './ResetPassword.module.css'
 import { useEffect } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
+import Button from '../ui/Button';
 
 export default function ResetPassword() {
     const navigate = useNavigate();
@@ -21,8 +22,10 @@ export default function ResetPassword() {
                     <input type="password" name="password" id="password" className={classes.formInput} />
                     <label htmlFor="confirmPassword" className={classes.formLabelInput + ' ' + classes.formLabel}>Re-type password</label>
                     <input type="password" name="confirmPassword" id="confirmPassword" className={classes.formInput} />
-                    <button type="submit" className={classes.resetPasswordButton}>Reset Password</button>
-                    <Link to="/login" className={classes.backToLogin}>Back to login</Link>
+                    <div className={classes.buttons}>
+                        <Button type="submit" variant='primary'>Reset Password</Button>
+                        <Button href="/login" variant='outline-pink'>Back to login</Button>
+                    </div>
                 </form>
             </div>
         </div>

@@ -4,6 +4,7 @@ import axios from 'axios';
 
 import classes from './SingleEvent.module.css'
 import EventCard from '../events/EventCard'
+import Button from '../ui/Button';
 
 export default function SingleEvent() {
     const [event, setEvent] = useState({});
@@ -61,12 +62,9 @@ export default function SingleEvent() {
                                         id="count"
                                         placeholder="1"
                                     />
-                                    <button
-                                        type="button"
-                                        className={classes.buttonAdd}
-                                    >
+                                    <Button variant='secondary'>
                                         Add to cart
-                                    </button>
+                                    </Button>
                                 </form>
                             </div>
                         </div>

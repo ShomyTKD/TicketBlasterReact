@@ -45,6 +45,11 @@
     justify-content: center;
 }
 
+.buttonUpload:hover {
+    opacity: 0.9;
+    transition: ease-in-out 0.2s;
+}
+
 .imagePreview {
     width: 357px;
     height: 211px;
@@ -112,10 +117,6 @@ select {
     cursor: pointer;
 }
 
-.buttonAdd {
-    width: 116px;
-}
-
 .buttonRemove {
     width: 128px;
     height: 33px;
@@ -128,6 +129,11 @@ select {
     align-self: flex-end;
     align-items: center;
     justify-content: center;
+}
+
+.buttonSave:hover {
+    opacity: 0.9;
+    transition: ease-in-out 0.2s;
 }
 
 .relatedEvents {

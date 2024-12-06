@@ -1,9 +1,10 @@
 import { useState, useEffect } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 import axios from 'axios';
 
 import classes from './Signup.module.css';
+import Button from '../ui/Button';
 
 export default function Signup() {
     const navigate = useNavigate();
@@ -167,15 +168,17 @@ export default function Signup() {
                             </p>
                         )}
 
-                        <button type="submit" className={classes.signupButton}>
-                            Create account
-                        </button>
-                        <Link
-                            to="/login"
-                            className={classes.alreadyHaveButton}
-                        >
-                            Already have an account?
-                        </Link>
+                        <div className={classes.buttons}>
+                            <Button type="submit" variant='primary'>
+                                Create account
+                            </Button>
+                            <Button
+                                href="/login"
+                                variant='outline-pink'
+                            >
+                                Already have an account?
+                            </Button>
+                        </div>
                     </form>
                 </div>
             </div>

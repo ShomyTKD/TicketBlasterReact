@@ -4,6 +4,8 @@ import axios from 'axios';
 
 import classes from './ChangeEvent.module.css';
 
+import Button from '../ui/Button';
+
 export default function ChangeEvent() {
     const [selectedCategory, setSelectedCategory] = useState('');
     const [selectedImage, setSelectedImage] = useState('');
@@ -248,13 +250,9 @@ export default function ChangeEvent() {
                         <label className={classes.label}>Related Events</label>
                         <div className={classes.relatedSelection}>
                             <input className={classes.input} type="text" />
-                            <button
-                                className={
-                                    classes.button + ' ' + classes.buttonAdd
-                                }
-                            >
+                            <Button variant='secondary'>
                                 Add
-                            </button>
+                            </Button>
                         </div>
                     </div>
 

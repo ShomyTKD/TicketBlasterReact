@@ -2,7 +2,7 @@ import { useState, useContext } from "react";
 import { Link, NavLink, useNavigate } from 'react-router-dom';
 import { UserContext } from '../../Context/UserContext';
 
-import classes from './Header.module.css'
+import classes from './Header.module.css';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCartShopping, faUser } from '@fortawesome/free-solid-svg-icons'

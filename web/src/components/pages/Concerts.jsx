@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 
 import EventCard from "../events/EventCard";
-import { Link } from 'react-router-dom';
+import Button from '../ui/Button';
 import axios from 'axios';
 
 import classes from './Concerts.module.css'
@@ -41,7 +41,7 @@ export default function Concerts() {
                 </div>
             </div>
             <div className={classes.categories}>
-                <Link onClick={showMore} className={classes.categoriesButton}>Load More Musical Concerts</Link>
+                <Button onClick={showMore} variant='outline' size='xlg'>Load More Musical Concerts</Button>
             </div>
         </>
     )

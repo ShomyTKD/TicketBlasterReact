@@ -1,9 +1,9 @@
 import { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
 import EventCard from './EventCard';
 import axios from 'axios';
 
 import classes from './Events.module.css';
+import Button from '../ui/Button';
 
 export default function Events() {
     const [events, setEvents] = useState([]);
@@ -59,8 +59,8 @@ export default function Events() {
 
             </div>
             <div className={classes.categories}>
-                <Link onClick={showMoreConcerts} className={classes.categoriesButton}>See All Musical Concerts</Link>
-                <Link onClick={showMoreComedies} className={classes.categoriesButton}>See All Stand-up Comedy Shows</Link>
+                <Button onClick={showMoreConcerts} variant='outline' size='xlg'>See All Musical Concerts</Button>
+                <Button onClick={showMoreComedies} variant='outline' size='xlg'>See All Stand-up Comedy Shows</Button>
             </div>
         </>
 

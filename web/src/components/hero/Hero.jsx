@@ -1,8 +1,8 @@
 import { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
 import axios from 'axios';
 
 import classes from './Hero.module.css'
+import Button from '../ui/Button';
 
 export default function Hero() {
     const [heroEvent, setHeroEvent] = useState({});
@@ -37,7 +37,7 @@ export default function Hero() {
                         </div>
 
                         <div className={classes.heroButton}>
-                            <Link to={`/event/${heroEvent._id}`} className={classes.heroLink}>Get tickets</Link>
+                            <Button href={`/event/${heroEvent._id}`} variant='bold' size='lg'>Get tickets</Button>
                         </div>
                     </div>
                 )}

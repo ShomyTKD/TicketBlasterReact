@@ -1,6 +1,6 @@
-import { Link } from 'react-router-dom';
-
 import classes from './EventCard.module.css'
+
+import Button from '../ui/Button'
 
 export default function EventCard({ name, date, location, image, href, description, buttonLabel }) {
     return (
@@ -20,7 +20,7 @@ export default function EventCard({ name, date, location, image, href, descripti
                 </div>
                 <div className={classes.eventLocationAction}>
                     <p className={classes.eventLocation}>{location}</p>
-                    <Link to={href} className={classes.eventButton}>{buttonLabel}</Link>
+                    <Button href={href} variant='secondary'>{buttonLabel}</Button>
                 </div>
             </div>
         </div>

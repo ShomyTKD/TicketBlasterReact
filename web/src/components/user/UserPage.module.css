@@ -22,6 +22,7 @@
 
 .navLink:hover {
     color: #ff48ab;
+    transition: ease-in-out 0.2s;
 }
 
 .active {
@@ -32,15 +33,4 @@
     margin: 3.5rem 0 2rem 0;
     display: flex;
     gap: 3rem;
-}
-
-.createEventButton {
-    border-radius: 20px;
-    height: 2.625rem;
-    background-color: #ff48ab;
-    border: none;
-    color: white;
-    padding: 0.6rem 1.8rem;
-    font-size: 1rem;
-    cursor: pointer;
 }

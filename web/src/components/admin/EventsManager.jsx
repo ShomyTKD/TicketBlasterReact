@@ -4,6 +4,8 @@ import axios from 'axios';
 
 import classes from './EventsManager.module.css'
 
+import Button from '../ui/Button';
+
 export default function EventsManager() {
     const [events, setEvents] = useState([]);
     const [selectedEvent, setSelectedEvent] = useState(null);
@@ -56,10 +58,10 @@ export default function EventsManager() {
                             </div>
                         </div>
                     </Link>
-                    <Link onClick={() => {
+                    <Button onClick={() => {
                         deletePopup();
                         setSelectedEvent(event._id);
-                    }} className={classes.deleteButton}>Delete Event</Link>
+                    }} variant='secondary'>Delete Event</Button>
                 </div>
             ))}
 
@@ -70,8 +72,8 @@ export default function EventsManager() {
                         <p>You are about to delete an event from the system. Please proceed with caution.</p>
                     </div>
                     <div className={classes.popupButtons}>
-                        <Link className={classes.cancelButton} onClick={() => setTogglePopup(false)}>Cancel</Link>
-                        <Link className={classes.deleteButton} onClick={() => handleDeleteEvent(selectedEvent)}>Delete</Link>
+                        <Button variant='outline' onClick={() => setTogglePopup(false)}>Cancel</Button>
+                        <Button variant='secondary' onClick={() => handleDeleteEvent(selectedEvent)}>Delete</Button>
                     </div>
                 </div>
             )}

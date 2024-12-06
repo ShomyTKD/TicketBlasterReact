@@ -37,9 +37,9 @@
     border-radius: 8px;
 }
 
-.navLink:hover,
-.navLink:active {
+.navLink:hover {
     color: #ff48ab;
+    transition: ease-in-out 0.2s;
 }
 
 .active {

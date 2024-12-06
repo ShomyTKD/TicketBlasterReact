@@ -63,7 +63,7 @@
 }
 
 .ticketsForm input {
-    height: 33px;
+    height: 2.625rem;
     width: 83px;
     text-align: center;
     outline: none;
@@ -83,21 +83,6 @@
 
 .formQuantity {
     display: flex;
-}
-
-.buttonAdd {
-    height: 33px;
-    padding: 0.4rem 2rem;
-    border-radius: 20px;
-    cursor: pointer;
-    background-color: #000;
-    color: #fff;
-    border: 2px solid #000;
-    transition: all 0.2s ease;
-}
-
-.buttonAdd:hover {
-    border: 2px solid #FF48AB;
 }
 
 .relatedActs {

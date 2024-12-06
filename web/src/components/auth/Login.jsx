@@ -1,9 +1,10 @@
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import classes from './Login.module.css';
 import { UserContext } from '../../Context/UserContext';
 import { useState, useEffect, useContext } from 'react';
 
 import axios from 'axios';
+import Button from '../ui/Button';
 
 export default function Login() {
     const navigate = useNavigate();
@@ -97,26 +98,28 @@ export default function Login() {
                             <p className={classes.invalidFormat}>Invalid Credentials</p>
                         )}
                         <div className={classes.loginOptions}>
-                            <Link
-                                to="/forgot-password"
-                                className={classes.forgotPasswordButton}
+                            <div className={classes.buttons}>
+                                <Button
+                                    href="/forgot-password"
+                                    variant='special'
+                                >
+                                    Forgot Password?
+                                </Button>
+                                <Button
+                                    type="submit"
+                                    variant='primary'
+                                >
+                                    Log In
+                                </Button>
+                            </div>
+                            <Button
+                                href="/create-account"
+                                variant='outline-pink'
                             >
-                                Forgot Password?
-                            </Link>
-                            <button
-                                type="submit"
-                                className={classes.loginButton}
-                            >
-                                Log In
-                            </button>
+                                Don&apos;t have an account?
+                            </Button>
                         </div>
 
-                        <Link
-                            to="/create-account"
-                            className={classes.noAccountButton}
-                        >
-                            Don&apos;t have an account?
-                        </Link>
                     </form>
                 </div>
             </div>

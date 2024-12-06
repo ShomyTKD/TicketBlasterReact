@@ -42,15 +42,6 @@
     font-weight: bold;
 }
 
-.eventButton {
-    background-color: black;
-    color: white;
-    height: 33px;
-    padding: 0.4rem 2rem;
-    border-radius: 20px;
-    font-size: 14px;
-}
-
 .eventImg {
     border-radius: 20px;
     background-size: cover;

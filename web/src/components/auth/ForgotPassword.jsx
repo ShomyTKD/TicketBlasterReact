@@ -1,7 +1,8 @@
 import classes from './ForgotPassword.module.css';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 import { useEffect, useState } from 'react';
+import Button from '../ui/Button';
 
 export default function ForgotPassword() {
     const navigate = useNavigate();
@@ -51,15 +52,17 @@ export default function ForgotPassword() {
                         {email !== '' && !validateEmail && (
                             <p className={classes.invalidFormat}>Please provide a valid email</p>
                         )}
-                        <button
-                            type="submit"
-                            className={classes.forgotPasswordButton}
-                        >
-                            Send password reset email
-                        </button>
-                        <Link to="/login" className={classes.backToLogin}>
-                            Back to login
-                        </Link>
+                        <div className={classes.buttons}>
+                            <Button
+                                type="submit"
+                                variant='primary'
+                            >
+                                Send password reset email
+                            </Button>
+                            <Button href="/login" variant='outline-pink'>
+                                Back to login
+                            </Button>
+                        </div>
                     </form>
                 </div>
             </div>
